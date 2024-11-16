@@ -31,13 +31,13 @@ class GoogleButton @JvmOverloads constructor(
                 (24 * resources.displayMetrics.density).toInt()
             )
             setImageResource(R.drawable.google_logo)
-            contentDescription = context.getString(R.string.continue_with_google)
+            contentDescription = context.getString(R.string.lanjutkan_dengan_google)
         }
 
         // Initialize and set up TextView
         textView = TextView(context).apply {
             layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-            text = context.getString(R.string.continue_with_google)
+            text = context.getString(R.string.lanjutkan_dengan_google)
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             setTextColor(ContextCompat.getColor(context, R.color.blue))
             setPadding(8, 0, 0, 0) // Padding to the left of the text
