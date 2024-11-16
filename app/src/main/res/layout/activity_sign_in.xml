@@ -110,6 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Continue with email"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/llBottom"/>
 
     <LinearLayout
@@ -127,10 +128,11 @@
             android:text="Don't have an account? " />
 
         <TextView
+            android:id="@+id/btnSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign up"
-            android:textColor="@color/blue" />
+            android:textColor="@color/blue"/>
     </LinearLayout>
 
 
