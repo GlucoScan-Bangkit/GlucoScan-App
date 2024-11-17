@@ -24,6 +24,10 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
         binding.tietPassword.addTextChangedListener(this)
         binding.tietPasswordConfirmation.addTextChangedListener(this)
 
+        binding.btnEmail.setOnClickListener {
+            val intent = Intent(this, VerificationActivity::class.java)
+            startActivity(intent)
+        }
         binding.btnSignin.setOnClickListener {
             finish()
         }

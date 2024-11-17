@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".view.login.VerificationActivity">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/google_logo"
+        tools:src="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/tvSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="16dp"
+        android:text="@string/verifikasi_email"
+        app:layout_constraintTop_toBottomOf="@id/ivLogo"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvSignDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvSign"
+        android:paddingBottom="16dp"
+        android:textSize="16sp"
+        android:text="@string/verifikasi_text"/>
+
+    <LinearLayout
+        android:id="@+id/editTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="48dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignDesc">
+
+        <EditText
+            android:id="@+id/otp1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
+            android:maxLength="1"
+            android:textColor="@color/blue"
+            android:background="@drawable/custom_edittext_border"/>
+
+        <EditText
+            android:id="@+id/otp2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
+            android:maxLength="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/blue"
+            android:background="@drawable/custom_edittext_border"/>
+
+        <EditText
+            android:id="@+id/otp3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
+            android:maxLength="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/blue"
+            android:background="@drawable/custom_edittext_border"/>
+
+        <EditText
+            android:id="@+id/otp4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:maxLength="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/blue"
+            android:background="@drawable/custom_edittext_border"/>
+
+        <EditText
+            android:id="@+id/otp5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:gravity="center"
+            android:layout_marginEnd="8dp"
+            android:maxLength="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/blue"
+            android:background="@drawable/custom_edittext_border"/>
+
+        <EditText
+            android:id="@+id/otp6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:gravity="center"
+            android:maxLength="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/blue"
+            android:background="@drawable/custom_edittext_border"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <Button
+            android:id="@+id/btnEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lanjutkan_dengan_email"
+            android:enabled="false"/>
+
+        <LinearLayout
+            android:id="@+id/llBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="52dp"
+            android:gravity="center"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/belum_mendapatkan_kode" />
+
+            <TextView
+                android:id="@+id/btnSignin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/kirim_ulang_kode"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
