@@ -6,14 +6,21 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ActivitySignUpBinding
+import com.dicoding.glucoscan.helper.ViewModelFactory
+import com.dicoding.glucoscan.viewmodel.SignUpViewModel
 
 class SignUpActivity : AppCompatActivity(), TextWatcher {
     private lateinit var binding: ActivitySignUpBinding
+    private val signUpViewModel: SignUpViewModel by viewModels {
+        ViewModelFactory.getInstance(application)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -25,8 +32,10 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
         binding.tietPasswordConfirmation.addTextChangedListener(this)
 
         binding.btnEmail.setOnClickListener {
-            val intent = Intent(this, VerificationActivity::class.java)
-            startActivity(intent)
+            signUpViewModel.setDatatoSignUp(binding.tietEmail.text.toString(), binding.tietPassword.text.toString())
+//            val intent = Intent(this, VerificationActivity::class.java)
+//            startActivity(intent)
+            signUpViewModel.signUp()
         }
         binding.btnSignin.setOnClickListener {
             finish()
