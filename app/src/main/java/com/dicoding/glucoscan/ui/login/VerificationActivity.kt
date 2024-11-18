@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.view.login
+package com.dicoding.glucoscan.ui.login
 
 import android.os.Bundle
 import android.text.Editable

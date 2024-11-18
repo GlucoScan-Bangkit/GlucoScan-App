@@ -1,20 +1,13 @@
-package com.dicoding.glucoscan.view.login
+package com.dicoding.glucoscan.ui.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ActivitySignUpBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
-import com.dicoding.glucoscan.viewmodel.SignUpViewModel
 
 class SignUpActivity : AppCompatActivity(), TextWatcher {
     private lateinit var binding: ActivitySignUpBinding

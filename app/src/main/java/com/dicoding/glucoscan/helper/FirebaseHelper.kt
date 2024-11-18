@@ -3,7 +3,7 @@ package com.dicoding.glucoscan.helper
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.dicoding.glucoscan.view.MainActivity
+import com.dicoding.glucoscan.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 

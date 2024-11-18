@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_outline_home_24"
+        android:title="@string/title_beranda" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_outline__notifications_none_24"
+        android:title="@string/title_notifikasi" />
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_outline_settings_24"
+        android:title="@string/title_pengaturan" />
+
+</menu>

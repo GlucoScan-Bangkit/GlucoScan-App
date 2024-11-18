@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.view.login
+package com.dicoding.glucoscan.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.glucoscan.databinding.ActivitySignInBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
-import com.dicoding.glucoscan.view.MainActivity
-import com.dicoding.glucoscan.viewmodel.SignInViewModel
+import com.dicoding.glucoscan.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

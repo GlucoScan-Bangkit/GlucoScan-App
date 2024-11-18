@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.view.component
+package com.dicoding.glucoscan.ui.component
 
 import android.content.Context
 import android.util.AttributeSet
