@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.view.login
+package com.dicoding.glucoscan.ui.login
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,19 +9,25 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ActivityVerificationBinding
+import com.dicoding.glucoscan.helper.FirebaseHelper
 
 class VerificationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVerificationBinding
+//    private lateinit var firebaseHelper: FirebaseHelper
+
+    val otpEditText = listOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnEmail.isEnabled = false
-        val otpEditText = listOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
-        fun checkAllFieldsFilled(): Boolean{
-            return otpEditText.all { it.text?.isNotEmpty() == true }
+//        firebaseHelper = FirebaseHelper()
+        binding.btnEmail.setOnClickListener {
+            finish()
         }
+
+        binding.btnEmail.isEnabled = false
         otpEditText.forEachIndexed{ index, editText ->
             editText.addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -40,5 +46,9 @@ class VerificationActivity : AppCompatActivity() {
 
             })
         }
+    }
+
+    fun checkAllFieldsFilled(): Boolean{
+        return otpEditText.all { it.text?.isNotEmpty() == true }
     }
 }

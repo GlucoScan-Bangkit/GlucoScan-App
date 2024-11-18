@@ -20,4 +20,9 @@
     <string name="verifikasi_text">Masukan kode verifikasi 6 digit yang telah dikirim ke email Anda.</string>
     <string name="belum_mendapatkan_kode">Belum mendapatkan kode?</string>
     <string name="kirim_ulang_kode">Kirim ulang kode</string>
+    <string name="title_beranda">Beranda</string>
+    <string name="title_notifikasi">Notifikasi</string>
+    <string name="title_pengaturan">Pengaturan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

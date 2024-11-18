@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1088091785353",
+    "project_id": "glucoscan-b3d43",
+    "storage_bucket": "glucoscan-b3d43.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088091785353:android:7f4fce7560e9ad6d329e58",
+        "android_client_info": {
+          "package_name": "com.dicoding.glucoscan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD_ZWjSuMuXADv9IGGvyvmiU2is9rlQRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
