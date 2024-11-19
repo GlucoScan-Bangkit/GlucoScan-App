@@ -58,16 +58,36 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_info_outline_24"/>
         </LinearLayout>
-        <FrameLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
             app:layout_constraintTop_toBottomOf="@id/llRekomendasi">
+            <TextView
+                android:id="@+id/titleDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20-26 Nov"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/tvLihatDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lihat detail"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerDailyRounded"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
-        </FrameLayout>
+                android:layout_height="68dp"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/titleDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,6 @@ class HomeViewModel : ViewModel() {
     val daily: LiveData<String> = _daily
 
     fun getDailyRoundedData() : List<String> {
-        return listOf("0 gr", "100 gr", "200 gr", "300 gr")
+        return listOf("0 gr", "100 gr", "200 gr", "300 gr" , "100 gr", "200 gr", "300 gr", "100 gr", "200 gr", "300 gr")
     }
 }
