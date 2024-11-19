@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="dailyRounded">
+        <attr name="data" format="string" />
+        <attr name="color" format="color" />
+        <attr name="dimension" format="float"/>
+    </declare-styleable>
+</resources>
