@@ -6,17 +6,17 @@
     app:startDestination="@id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.dicoding.glucoscan.ui.home.HomeFragment"
+        android:name="com.dicoding.glucoscan.ui.screen.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_setting"
-        android:name="com.dicoding.glucoscan.ui.setting.SettingFragment"
+        android:name="com.dicoding.glucoscan.ui.screen.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.dicoding.glucoscan.ui.notifications.NotificationsFragment"
+        android:name="com.dicoding.glucoscan.ui.screen.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

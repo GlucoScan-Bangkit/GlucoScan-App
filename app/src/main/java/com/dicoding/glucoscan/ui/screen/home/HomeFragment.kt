@@ -1,21 +1,19 @@
-package com.dicoding.glucoscan.ui.setting
+package com.dicoding.glucoscan.ui.screen.home
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.R
-import com.dicoding.glucoscan.databinding.FragmentSettingBinding
+import com.dicoding.glucoscan.databinding.FragmentHomeBinding
 
-class SettingFragment : Fragment() {
-    private lateinit var binding: FragmentSettingBinding
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -23,10 +21,10 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val settingViewModel =
-            ViewModelProvider(this)[SettingViewModel::class.java]
+        val homeViewModel =
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
-        binding = FragmentSettingBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

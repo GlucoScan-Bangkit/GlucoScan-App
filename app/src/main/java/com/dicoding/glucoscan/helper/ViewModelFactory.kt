@@ -3,8 +3,8 @@ package com.dicoding.glucoscan.helper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.glucoscan.ui.login.SignInViewModel
-import com.dicoding.glucoscan.ui.login.SignUpViewModel
+import com.dicoding.glucoscan.ui.screen.login.SignInViewModel
+import com.dicoding.glucoscan.ui.screen.login.SignUpViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
     companion object {
