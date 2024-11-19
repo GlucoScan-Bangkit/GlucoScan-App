@@ -5,16 +5,16 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import com.dicoding.glucoscan.R
 
 /**
  * TODO: document your custom view class.
  */
-class dailyRounded : View {
+class DailyRounded : View {
 
     private var _data: String? = null
     private var _color: Int = Color.RED
@@ -68,17 +68,17 @@ class dailyRounded : View {
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         // Load attributes
         val a = context.obtainStyledAttributes(
-                attrs, R.styleable.dailyRounded, defStyle, 0)
+                attrs, R.styleable.DailyRounded, defStyle, 0)
 
         _data = a.getString(
-                R.styleable.dailyRounded_data)
+                R.styleable.DailyRounded_data)
         _color = a.getColor(
-                R.styleable.dailyRounded_color,
+                R.styleable.DailyRounded_color,
                 color)
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
         _dimension = a.getDimension(
-                R.styleable.dailyRounded_dimension,
+                R.styleable.DailyRounded_dimension,
                 dimension)
 
         a.recycle()
@@ -107,44 +107,35 @@ class dailyRounded : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        // TODO: consider storing these as member variables to reduce
-        // allocations per draw cycle.
-        val paddingLeft = paddingLeft
-        val paddingTop = paddingTop
-        val paddingRight = paddingRight
-        val paddingBottom = paddingBottom
-        val centerX = width / 2
-        val centerY = height / 2
-
         val contentWidth = width - paddingLeft - paddingRight
         val contentHeight = height - paddingTop - paddingBottom
+        val centerX = paddingLeft + contentWidth / 2f
+        val centerY = paddingTop + contentHeight / 2f
         val radius = Math.min(contentWidth, contentHeight) / 2f
 
+        // Save the canvas state
         canvas.save()
-        canvas.clipPath(Path().apply {
-            addCircle(
-                paddingLeft + contentWidth / 2f,
-                paddingTop + contentHeight / 2f,
-                radius,
-                Path.Direction.CW
-            )
-        })
 
-        canvas.drawCircle(
-            paddingLeft + contentWidth / 2f,
-            paddingTop + contentHeight / 2f,
-            radius,
-            backgroundPaint
-        )
+        // Clip the canvas to a circular region
+        val circularPath = Path().apply {
+            addCircle(centerX, centerY, radius, Path.Direction.CW)
+        }
+        canvas.clipPath(circularPath)
 
+        // Draw the circular background
+        canvas.drawCircle(centerX, centerY, radius, backgroundPaint)
+
+        // Draw the text inside the circle, centered
         data?.let {
-            // Draw the text.
-            canvas.drawText(it,
-                    paddingLeft + (contentWidth - textWidth) / 2,
-                    paddingTop + (contentHeight + textHeight) / 2,
-                    textPaint)
+            canvas.drawText(
+                it,
+                centerX - textWidth / 2f,  // Center horizontally
+                centerY + textHeight / 2f, // Center vertically (adjust for baseline)
+                textPaint
+            )
         }
 
+        // Restore the canvas to its original state
         canvas.restore()
     }
 }

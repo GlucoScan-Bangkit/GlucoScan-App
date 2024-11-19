@@ -58,16 +58,17 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_info_outline_24"/>
         </LinearLayout>
-        <com.dicoding.glucoscan.ui.component.dailyRounded
-            style="@style/Widget.Theme.GlucoScan.MyView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@android:color/transparent"
-            android:paddingLeft="20dp"
-            android:paddingBottom="40dp"
-            app:dimension="16"
-            app:data="0 gr"
-            app:layout_constraintTop_toBottomOf="@id/llRekomendasi"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/llRekomendasi">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerDailyRounded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

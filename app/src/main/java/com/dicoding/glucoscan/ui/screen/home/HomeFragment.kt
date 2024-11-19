@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.FragmentHomeBinding
+import com.dicoding.glucoscan.helper.DailyRoundedAdapter
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -25,6 +27,10 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this)[HomeViewModel::class.java]
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.recyclerDailyRounded.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerDailyRounded.adapter = DailyRoundedAdapter(homeViewModel.getDailyRoundedData())
+
         return binding.root
     }
 

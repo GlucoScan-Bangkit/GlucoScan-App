@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dicoding.glucoscan.ui.component.dailyRounded
+    <com.dicoding.glucoscan.ui.component.DailyRounded
+        android:id="@+id/dailyRoundedView"
         style="@style/Widget.Theme.GlucoScan.MyView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:background="@android:color/transparent"
-        android:paddingLeft="20dp"
-        android:paddingBottom="40dp"
-        app:dimension="24"
+        app:color="@color/neutral_700"
+        app:dimension="10sp"
         app:data="0 gr"/>
 
 </FrameLayout>

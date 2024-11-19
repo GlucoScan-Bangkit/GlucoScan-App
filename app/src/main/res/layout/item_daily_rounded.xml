@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.dicoding.glucoscan.ui.component.DailyRounded
+        android:id="@+id/dailyRoundedView"
+        style="@style/Widget.Theme.GlucoScan.MyView"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@android:color/transparent"
+        app:color="@color/neutral_700"
+        app:dimension="10sp"
+        app:data="0 gr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daily"
+        app:layout_constraintTop_toBottomOf="@id/dailyRoundedView"
+        app:layout_constraintEnd_toEndOf="@id/dailyRoundedView"
+        app:layout_constraintStart_toStartOf="@id/dailyRoundedView"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
