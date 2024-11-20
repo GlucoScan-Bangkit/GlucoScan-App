@@ -19,4 +19,9 @@
         android:name="com.dicoding.glucoscan.ui.screen.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_scan"
+        android:name="com.dicoding.glucoscan.ui.screen.scan.ScanFragment"
+        android:label="fragment_scan"
+        tools:layout="@layout/fragment_scan" />
 </navigation>
