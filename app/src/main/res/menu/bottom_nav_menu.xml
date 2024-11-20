@@ -7,6 +7,16 @@
         android:title="@string/title_beranda" />
 
     <item
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/ic_history_24"
+        android:title="@string/title_riwayat"/>
+
+    <item
+        android:id="@+id/navigation_scan"
+        android:icon="@drawable/ic_scan_24"
+        android:title="@string/title_pindai" />
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_outline__notifications_none_24"
         android:title="@string/title_notifikasi" />
@@ -15,10 +25,5 @@
         android:id="@+id/navigation_setting"
         android:icon="@drawable/ic_outline_settings_24"
         android:title="@string/title_pengaturan" />
-
-    <item
-        android:id="@+id/navigation_scan"
-        android:icon="@drawable/ic_scan_24"
-        android:title="@string/title_pindai" />
 
 </menu>

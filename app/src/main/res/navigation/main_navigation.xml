@@ -24,4 +24,9 @@
         android:name="com.dicoding.glucoscan.ui.screen.scan.ScanFragment"
         android:label="fragment_scan"
         tools:layout="@layout/fragment_scan" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.dicoding.glucoscan.ui.screen.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>
