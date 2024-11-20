@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.ui.notifications
+package com.dicoding.glucoscan.ui.screen.notifications
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

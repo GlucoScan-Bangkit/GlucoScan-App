@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.ui.notifications
+package com.dicoding.glucoscan.ui.screen.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.dicoding.glucoscan.ui.login
+package com.dicoding.glucoscan.ui.screen.login
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
