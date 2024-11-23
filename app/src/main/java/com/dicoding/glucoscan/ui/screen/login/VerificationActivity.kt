@@ -3,6 +3,7 @@ package com.dicoding.glucoscan.ui.screen.login
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,9 +14,8 @@ import com.dicoding.glucoscan.helper.FirebaseHelper
 
 class VerificationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVerificationBinding
+    private lateinit var otpEditText: List<EditText>
 //    private lateinit var firebaseHelper: FirebaseHelper
-
-    val otpEditText = listOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,7 @@ class VerificationActivity : AppCompatActivity() {
         }
 
         binding.btnEmail.isEnabled = false
+        otpEditText = listOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
         otpEditText.forEachIndexed{ index, editText ->
             editText.addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}

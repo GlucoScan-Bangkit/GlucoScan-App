@@ -28,7 +28,7 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
             signUpViewModel.setDatatoSignUp(binding.tietEmail.text.toString(), binding.tietPassword.text.toString())
 //            val intent = Intent(this, VerificationActivity::class.java)
 //            startActivity(intent)
-            signUpViewModel.signUp()
+            signUpViewModel.signUp2()
         }
         binding.btnSignin.setOnClickListener {
             finish()
