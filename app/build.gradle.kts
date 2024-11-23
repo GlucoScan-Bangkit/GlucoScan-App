@@ -59,9 +59,12 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
-    
+
     implementation(libs.retrofit)
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.logging.interceptor)
     implementation(libs.converter.gson)
+
+    implementation(libs.androidx.security.crypto)
+
 }

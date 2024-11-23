@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveUID
 import com.dicoding.glucoscan.data.response.RegisterRequest
 import com.dicoding.glucoscan.data.response.RegisterResponse
 import com.dicoding.glucoscan.data.retrofit.ApiConfig
@@ -51,6 +52,10 @@ class SignUpViewModel(private val mApplication: Application) : ViewModel() {
                     if (responseBody != null) {
                         // Signup berhasil
                         Log.d("Sign up", "Success")
+                        saveUID(
+                            uid = p1.body()?.data?.idToken.toString(),
+                            context = mApplication.baseContext
+                        )
                         val intent = Intent(mApplication.baseContext, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         mApplication.baseContext.startActivity(intent)

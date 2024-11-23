@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveUID
 import com.dicoding.glucoscan.data.response.LoginRequest
 import com.dicoding.glucoscan.data.response.LoginResponse
 import com.dicoding.glucoscan.data.retrofit.ApiConfig
@@ -44,6 +45,10 @@ class SignInViewModel(private val mApplication: Application) : ViewModel() {
                     if (responseBody != null) {
                         // Login berhasil
                         Log.d("Sign in", "Success")
+                        saveUID(
+                            uid = p1.body()?.data?.idToken.toString(),
+                            context = mApplication.baseContext
+                        )
                         val intent = Intent(mApplication.baseContext, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         mApplication.baseContext.startActivity(intent)
@@ -55,7 +60,6 @@ class SignInViewModel(private val mApplication: Application) : ViewModel() {
 
             override fun onFailure(p0: Call<LoginResponse>, p1: Throwable) {
                 Log.e(TAG, "onFailure: ${p1.message}")
-
             }
 
         })
