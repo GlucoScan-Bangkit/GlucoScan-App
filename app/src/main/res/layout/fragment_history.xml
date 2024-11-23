@@ -24,24 +24,31 @@
             android:id="@+id/clListRiwayat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
             app:layout_constraintTop_toBottomOf="@id/tvRiwayat">
             <TextView
                 android:id="@+id/titleMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="November"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRiwayat"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 app:layout_constraintTop_toBottomOf="@+id/titleMonth"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clRiwayat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/custom_edittext_border"
             app:layout_constraintTop_toBottomOf="@id/clListRiwayat">
             <com.dicoding.glucoscan.ui.component.DailyRounded
                 android:id="@+id/drDaily"
@@ -52,6 +59,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
             <TextView
+                android:id="@+id/tvDaily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rab"
@@ -60,18 +68,53 @@
                 app:layout_constraintEnd_toEndOf="@id/drDaily"/>
 
             <TextView
+                android:id="@+id/titleDailyScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pemindaian"
-                app:layout_constraintStart_toEndOf="@id/drDaily"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toStartOf="@id/tvDailyScan"
+                app:layout_constraintBottom_toTopOf="@id/tvDailyScan"/>
 
             <TextView
+                android:id="@+id/tvDailyScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 Kali" />
+                android:layout_marginStart="16dp"
+                android:textStyle="bold"
+                android:text="1 Kali"
+                app:layout_constraintStart_toEndOf="@+id/drDaily"
+                app:layout_constraintBottom_toBottomOf="@id/drDaily"/>
 
+            <TextView
+                android:id="@+id/titleStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Status"
+                app:layout_constraintBottom_toTopOf="@id/tvStatus"
+                app:layout_constraintStart_toEndOf="@id/titleDailyScan"/>
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal"
+                app:layout_constraintStart_toStartOf="@id/titleStatus"
+                app:layout_constraintBottom_toBottomOf="@id/drDaily"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/titleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:textStyle="bold"
+            android:text="Aktifitas hari ini"
+            app:layout_constraintTop_toBottomOf="@id/clRiwayat"
+            app:layout_constraintStart_toStartOf="parent"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/titleActivity"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
