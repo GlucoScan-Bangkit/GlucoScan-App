@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.FragmentSettingBinding
 import com.dicoding.glucoscan.ui.screen.login.SignInActivity
+import com.dicoding.glucoscan.ui.screen.usereditor.PasswordEditorActivity
+import com.dicoding.glucoscan.ui.screen.usereditor.ProfileEditorActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SettingFragment : Fragment() {
@@ -33,9 +35,17 @@ class SettingFragment : Fragment() {
 
         binding.boxEditProfile.icEdit.setImageResource(R.drawable.ic_profile_edit)
         binding.boxEditProfile.content.text = "Perbarui profil"
+        binding.boxEditProfile.root.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileEditorActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.boxEditPassword.icEdit.setImageResource(R.drawable.ic_change_password)
         binding.boxEditPassword.content.text = "Ubah kata sandi"
+        binding.boxEditPassword.root.setOnClickListener {
+            val intent = Intent(requireContext(), PasswordEditorActivity::class.java)
+            startActivity(intent)
+        }
 
         auth = FirebaseAuth.getInstance()
 
