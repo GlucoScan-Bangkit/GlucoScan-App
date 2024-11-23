@@ -14,5 +14,8 @@ class PasswordEditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPasswordEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.icBack.setOnClickListener{
+            finish()
+        }
     }
 }
