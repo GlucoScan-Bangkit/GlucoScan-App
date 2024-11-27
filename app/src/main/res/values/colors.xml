@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="blue">#2854EE</color>
     <color name="gray">#D9D9D9</color>
     <color name="light_blue_400">#FF29B6F6</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
-    <color name="neutral_700">#90939B</color>
     <color name="pink">#FEEDEF</color>
+
+    <color name="blue_100">#EAEEFD</color>
+    <color name="blue_300">#9CB0F7</color>
+    <color name="blue_500">#2854EE</color>
+    <color name="blue_700">#1C3CA9</color>
+    <color name="blue_900">#112364</color>
+
+    <color name="green_100">#EDFDF5</color>
+    <color name="green_300">#AAF6D0</color>
+    <color name="green_500">#47EB99</color>
+    <color name="green_700">#32A76D</color>
+    <color name="green_900">#1E6340</color>
+
+    <color name="red_100">#FEE8E6</color>
+    <color name="red_300">#FA938A</color>
+    <color name="red_500">#F51400</color>
+    <color name="red_700">#AE0E00</color>
+    <color name="red_900">#670800</color>
+
+    <color name="yellow_100">#FFF8E6</color>
+    <color name="yellow_300">#FFDF8D</color>
+    <color name="yellow_500">#FFC93D</color>
+    <color name="yellow_700">#B58406</color>
+    <color name="yellow_900">#6B4E03</color>
+
+    <color name="neutral_100">#FAFAFB</color>
+    <color name="neutral_300">#E7E9EE</color>
+    <color name="neutral_500">#CBCFDB</color>
+    <color name="neutral_700">#90939B</color>
+    <color name="neutral_900">#55575C</color>
+
+    <color name="black">#202020</color>
+    <color name="black_background">#404040</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_background">#FAFAFB</color>
 </resources>

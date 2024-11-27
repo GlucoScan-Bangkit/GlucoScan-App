@@ -13,7 +13,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/logo"
+        android:contentDescription="logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/google_logo"
@@ -26,7 +26,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginVertical="16dp"
-        android:text="@string/daftar_akun"
+        android:text="@string/sign_up_title"
         app:layout_constraintTop_toBottomOf="@id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvSign"
         android:textSize="16sp"
-        android:text="@string/desc_masuk"/>
+        android:text="@string/sign_up_subtitle"/>
 
     <com.dicoding.glucoscan.ui.component.GoogleButton
         android:id="@+id/btnGoogle"
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/password_confirmation"
+        android:text="@string/confirm_password"
         app:layout_constraintTop_toBottomOf="@id/tilPassword"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPasswordConfirmation"
@@ -148,7 +148,7 @@
             android:id="@+id/btnEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lanjutkan_dengan_email"
+            android:text="@string/sign_up_email_button"
             android:enabled="false"/>
 
         <LinearLayout
@@ -162,15 +162,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sudah_memiliki_akun" />
+                android:text="@string/already_have_account" />
 
             <TextView
                 android:id="@+id/btnSignin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="@string/masuk_akun"
-                android:textColor="@color/blue" />
+                android:text="@string/switch_to_sign_in"
+                android:textColor="@color/blue_500" />
         </LinearLayout>
     </LinearLayout>
 

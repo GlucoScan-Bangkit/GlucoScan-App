@@ -17,7 +17,7 @@
             android:paddingVertical="24dp"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:text="Riwayat"
+            android:text="@string/history_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="November"
+                android:text="@string/month"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
             <androidx.recyclerview.widget.RecyclerView
@@ -54,7 +54,7 @@
                 android:id="@+id/drDaily"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                app:data="0 gr"
+                app:data="@string/sugar_intake"
                 app:dimension="10sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -62,7 +62,7 @@
                 android:id="@+id/tvDaily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rab"
+                android:text="@string/day"
                 app:layout_constraintTop_toBottomOf="@id/drDaily"
                 app:layout_constraintStart_toStartOf="@id/drDaily"
                 app:layout_constraintEnd_toEndOf="@id/drDaily"/>
@@ -71,7 +71,7 @@
                 android:id="@+id/titleDailyScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pemindaian"
+                android:text="@string/scan_history"
                 app:layout_constraintStart_toStartOf="@id/tvDailyScan"
                 app:layout_constraintBottom_toTopOf="@id/tvDailyScan"/>
 
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textStyle="bold"
-                android:text="1 Kali"
+                android:text="@string/scan_history_value"
                 app:layout_constraintStart_toEndOf="@+id/drDaily"
                 app:layout_constraintBottom_toBottomOf="@id/drDaily"/>
 
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Status"
+                android:text="@string/status"
                 app:layout_constraintBottom_toTopOf="@id/tvStatus"
                 app:layout_constraintStart_toEndOf="@id/titleDailyScan"/>
 
@@ -98,7 +98,7 @@
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Normal"
+                android:text="@string/safe"
                 app:layout_constraintStart_toStartOf="@id/titleStatus"
                 app:layout_constraintBottom_toBottomOf="@id/drDaily"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
             android:textStyle="bold"
-            android:text="Aktifitas hari ini"
+            android:text="@string/detail_activity_title"
             app:layout_constraintTop_toBottomOf="@id/clRiwayat"
             app:layout_constraintStart_toStartOf="parent"/>
 

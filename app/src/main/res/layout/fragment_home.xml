@@ -14,7 +14,7 @@
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Halo,"
+            android:text="@string/home_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textSize="24sp"/>
@@ -23,7 +23,7 @@
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat datang!"
+            android:text="@string/home_subtitle"
             app:layout_constraintTop_toBottomOf="@id/tvUsername"
             app:layout_constraintStart_toStartOf="@id/tvUsername"/>
 
@@ -63,7 +63,7 @@
             android:id="@+id/titleStatistik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/statistik"
+            android:text="@string/statistic_title"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
@@ -115,21 +115,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="Jangan lupa scan minuman Anda hari ini! Cara sederhana untuk memantau asupan gula harian anda"/>
+                android:text="@string/quick_scan_subtitle"/>
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="@string/scan_now"
                 android:src="@drawable/ic_scan_24"
                 android:layout_gravity="center"
-                app:tint="@color/blue"/>
+                app:tint="@color/blue_500"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blue"
+                android:textColor="@color/blue_500"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:text="Scan sekarang"/>
+                android:text="@string/scan_now"/>
         </LinearLayout>
 
 
