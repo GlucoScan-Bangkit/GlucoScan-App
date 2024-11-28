@@ -1,29 +1,171 @@
 <resources>
-    <string name="app_name">GlucoScan</string>
-    <string name="lanjutkan_dengan_google">Lanjutkan dengan google</string>
-    <string name="masuk_akun">Masuk akun</string>
-    <string name="daftar_akun">Daftar akun</string>
-    <string name="lupa_password">Lupa password?</string>
-    <string name="lanjutkan_dengan_email">Lanjutkan dengan email</string>
-    <string name="belum_punya_akun">Belum punya akun?</string>"
-    <string name="sudah_memiliki_akun">Sudah memiliki akun?</string>
+    <string name="app_name">GlucoscanTesting</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    //SIGN UP
+    <string name="sign_up_title">Daftar akun</string>
+    <string name="sign_up_subtitle">Glucoscan hadir untuk membantu Anda mengontrol asupan gula harian.</string>
+    <string name="or">or</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="or">Or</string>
-    <string name="logo">Logo</string>
-    <string name="password_confirmation">Password Confirmation</string>
-    <string name="email_tidak_valid">Email tidak valid</string>
-    <string name="password_tidak_sama">Password tidak sama</string>
-    <string name="password_minimal_8_karakter">Password minimal 8 karakter</string>
-    <string name="desc_masuk">Glucoscan hadir untuk membantu Anda mengontrol asupan gula harian</string>
-    <string name="verifikasi_email">Verifikasi email</string>
-    <string name="verifikasi_text">Masukan kode verifikasi 6 digit yang telah dikirim ke email Anda.</string>
-    <string name="belum_mendapatkan_kode">Belum mendapatkan kode?</string>
-    <string name="kirim_ulang_kode">Kirim ulang kode</string>
-    <string name="title_beranda">Beranda</string>
-    <string name="title_notifikasi">Notifikasi</string>
-    <string name="title_pengaturan">Pengaturan</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="statistik">Statistik</string>
+    <string name="confirm_password">Konfirmasi password</string>
+    <string name="already_have_account">Sudah memiliki akun?</string>
+    <string name="switch_to_sign_in">Masuk</string>
+
+    //SIGN IN
+    <string name="sign_in_title">Masuk akun</string>
+    <string name="forgot_password">Lupa password?</string>
+    <string name="dont_have_account">Belum punya akun?</string>
+    <string name="switch_to_sign_up">Daftar akun</string>
+
+    //EMAIL VERIFICATION
+    <string name="email_verification_title">Verifikasi email</string>
+    <string name="email_verification_subtitle">Masukkan kode verifikasi 6 digit yang telah dikirim ke email Anda.</string>
+    <string name="dont_receive_code">Belum mendapatkan kode?</string>
+    <string name="send_code">Kirim ulang kode</string>
+
+    //PERSONAL DATA
+    <string name="personal_data_title">Isi data pribadi</string>
+    <string name="personal_data_subtitle">Yuk, lengkapi data dirimu sekarang untuk mendapatkan pengalaman yang lebih personal.</string>
+    <string name="fullname">Nama lengkap</string>
+    <string name="fullname_placeholder">Ex : Ariana Grande</string>
+    <string name="age">Usia</string>
+    <string name="age_placeholder">Ex : 20</string>
+    <string name="gender">Jenis kelamin</string>
+
+    //HOME
+    <string name="home_title">Halo, Lastname</string>
+    <string name="home_subtitle">Selamat datang!</string>
+    <string name="statistic_title">Statistik</string>
+
+    //SCAN
+    <string name="camera_description">Pastikan kandungan nutrisi berada di dalam area kotak scan.</string>
+    <string name="loading_title">Tunggu sebentar yaa..</string>
+    <string name="loading_subtitle">Kita proses dulu ya gambarnya, Ini gak akan lama kok.</string>
+    <string name="scan_failed_title">Scan gagal</string>
+    <string name="scan_failed_subtitle">Maaf, kami tidak dapat mendeteksi produk tersebut. Bisakah Anda mencoba mengambil foto yang lebih jelas?</string>
+    <string name="nutrition_facts">Kandungan Nutrisi</string>
+    <string name="sugar">Gula</string>
+    <string name="sugar_content">20 gr</string>
+    <string name="comparison_to_sdm">Setara dengan</string>
+    <string name="comparison_to_sdm_content">1,2 sdm</string>
+    <string name="scan_success_title">Hore! Hasil scan-mu sudah tersimpan  🎉</string>
+    <string name="scan_success_subtitle">Kini, mengawasi kadar gula dalam minuman Anda jadi lebih mudah! Mari kita jaga kesehatan bersama dan capai tujuan hidup yang lebih sehat!</string>
+
+    //HISTORY
+    <string name="history_title">Riwayat</string>
+    <string name="month">November</string>
+    <string name="date">24</string>
+    <string name="sugar_intake">20 gr</string>
+    <string name="day">Rab</string>
+    <string name="scan_history">Aktivitas scan</string>
+    <string name="scan_history_value">1 kali</string>
+    <string name="status">Status</string>
+    <string name="safe">Aman</string>
+    <string name="be_careful">Waspada</string>
+    <string name="danger">Berbahaya</string>
+    <string name="detail_activity_title">Aktivitas hari ini</string>
+
+    //NOTIFICATION
+    <string name="notification_title">Notifikasi</string>
+    <string name="notification_subtitle">Tidak ada notifikasi baru untuk saat ini. Kami akan terus memberitahu Anda jika ada hal penting!</string>
+
+    //SETTING
+    <string name="user_lastname">Annabelle</string>
+    <string name="user_email">annabelle@gmail.com</string>
+    <string name="edit_profile">Perbarui profil</string>
+    <string name="set_password">Buat kata sandi</string>
+    <string name="edit_password">Ubah kata sandi</string>
+
+    //NEW PASSWORD
+    <string name="current_password">Kata sandi saat ini</string>
+    <string name="new_password">Kata sandi baru</string>
+    <string name="confirmation_password">Konfirmasi kata sandi</string>
+
+
+
+    // *** BELOW THIS ARE FROM COMPONENT ***
+
+
+
+    //BUTTON
+    //sign-up and sign-in
+    <string name="continue_google_button">Lanjutkan dengan google</string>
+    <string name="sign_up_google_button">Daftar dengan Google</string>
+    <string name="sign_up_email_button">Daftar dengan email</string>
+    <string name="sign_in_google_button">Masuk dengan Google</string>
+    <string name="sign_in_email_button">Masuk dengan email</string>
+    <string name="update_button">Perbarui</string>
+
+    //email-verification
+    <string name="verification_code_button">Verifikasi kode</string>
+
+    //personal-data
+    <string name="male_button">Laki-laki</string>
+    <string name="female_button">Perempuan</string>
+    <string name="save_data_button">Simpan data pribadi</string>
+
+    //sugar-intake-popup
+    <string name="close_button">Tutup</string>
+
+    //nutrition-facts-detected
+    <string name="cancel_button">batal</string>
+    <string name="save_activity_button">Simpan hasil scan</string>
+
+    //nutrition-facts-not-detected
+    <string name="try_again_button">Coba lagi</string>
+
+    //nutrition-facts-success
+    <string name="back_to_home_button">Kembali ke beranda</string>
+
+    //setting
+    <string name="sign_out_button">Keluar</string>
+
+    //sign-out-popup
+    <string name="sign_out_button_confirmation">Ya, keluar</string>
+    <string name="sign_out_cancel_button">Tidak</string>
+
+
+    //ALERT
+    <string name="email_invalid">Alamat email tidak memenuhi syarat.</string>
+    <string name="email_registered">Alamat email sudah terdaftar, silakan gunakan alamat email yang lain.</string>
+    <string name="email_not_registered">Email tersebut belum terdaftar, silakan buat akun terlebih dahulu.</string>
+    <string name="password_invalid">Kata sandi harus memiliki 8 karakter atau lebih.</string>
+    <string name="wrong_password">Tolong perbaiki, kata sandi yang Anda masukkan salah.</string>
+    <string name="wrong_password_confirmation">Kata sandi tidak sesuai.</string>
+    <string name="wrong_code">Tolong perbaiki, sesuaikan kode dengan yang ada di inbox email.</string>
+
+
+    //POPUP
+    //sugar-intake-info
+    <string name="info_title">Information</string>
+    <string name="info_subtitle">The WHO recommends that adults and children consume no more than 10% of their daily energy intake from sugar, which is about 12 teaspoons (50 grams) per day.</string>
+
+    //camera-info
+    <string name="camera_subtitle">Pastikan Anda mengambil foto dengan jelas agar kami dapat memindai informasi nutrisi dengan mudah.</string>
+
+    //sign-out
+    <string name="sign_out_title">Keluar</string>
+    <string name="sign_out_subtitle">Apakah anda yakin ingin keluar?</string>
+
+
+    //QUICK SCAN
+    <string name="quick_scan_subtitle">Jangan lupa scan minuman Anda hari ini! Cara sederhana untuk memantau asupan gula harian Anda</string>
+    <string name="scan_now">Scan sekarang</string>
+
+
+    //NAVIGATION BAR
+    <string name="home">Beranda</string>
+    <string name="history">Riwayat</string>
+    <string name="scan">Scan</string>
+    <string name="notification">Notifikasi</string>
+    <string name="setting">Pengaturan</string>
+
+
+    //TOAST
+    <string name="profile_update">Profil berhasil diubah.</string>
+    <string name="password_update">Password berhasil diubah.</string>
+
 </resources>

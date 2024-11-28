@@ -19,4 +19,14 @@
         android:name="com.dicoding.glucoscan.ui.screen.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.dicoding.glucoscan.ui.screen.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <activity
+        android:id="@+id/navigation_scan"
+        android:name="com.dicoding.glucoscan.ui.screen.scan.CameraActivity"
+        android:label="activity_camera"
+        tools:layout="@layout/activity_camera" />
 </navigation>

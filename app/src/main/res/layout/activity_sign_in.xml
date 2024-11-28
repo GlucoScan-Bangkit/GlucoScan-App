@@ -13,7 +13,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/logo"
+        android:contentDescription="logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/google_logo"
@@ -26,7 +26,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginVertical="16dp"
-        android:text="@string/masuk_akun"
+        android:text="@string/sign_in_title"
         app:layout_constraintTop_toBottomOf="@id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -53,71 +53,34 @@
         android:textColor="@color/gray"
         android:textSize="16sp"/>
 
-    <TextView
-        android:id="@+id/titleEmail"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/email"
+        layout="@layout/component_input_field"
         app:layout_constraintTop_toBottomOf="@id/separator"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titleEmail"
-        android:layout_marginTop="4dp"
-        app:hintAnimationEnabled="false"
-        app:counterEnabled="false">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietEmail"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/titlePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/password"
-        app:layout_constraintTop_toBottomOf="@id/tilEmail"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword"
+    <include
+        android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titlePassword"
-        android:layout_marginTop="4dp"
-        app:hintAnimationEnabled="false"
-        app:counterEnabled="false">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietPassword"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:inputType="textPassword"
-            android:password="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        layout="@layout/component_input_field"
+        app:layout_constraintTop_toBottomOf="@id/emailInput"/>
 
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lupa_password"
-        android:textColor="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/tilPassword"
+        android:text="@string/forgot_password"
+        android:textColor="@color/blue_500"
+        app:layout_constraintTop_toBottomOf="@id/passwordInput"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btnEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lanjutkan_dengan_email"
+        android:text="@string/sign_in_email_button"
         android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/llBottom"/>
 
@@ -133,15 +96,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/belum_punya_akun" />
+            android:text="@string/dont_have_account" />
 
         <TextView
             android:id="@+id/btnSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/daftar_akun"
-            android:textColor="@color/blue" />
+            android:text="@string/switch_to_sign_up"
+            android:textColor="@color/blue_500" />
     </LinearLayout>
 
 
