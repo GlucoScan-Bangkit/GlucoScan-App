@@ -41,6 +41,7 @@
     <string name="statistic_title">Statistik</string>
 
     //SCAN
+    <string name="camera_description">Pastikan kandungan nutrisi berada di dalam area kotak scan.</string>
     <string name="loading_title">Tunggu sebentar yaa..</string>
     <string name="loading_subtitle">Kita proses dulu ya gambarnya, Ini gak akan lama kok.</string>
     <string name="scan_failed_title">Scan gagal</string>

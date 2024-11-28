@@ -8,6 +8,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ActivityMainBinding
 import com.dicoding.glucoscan.ui.screen.login.SignInActivity
+import com.dicoding.glucoscan.ui.screen.scan.CameraActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,18 @@ class MainActivity : AppCompatActivity() {
         val navBot = binding.bottomNav
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navBot.setupWithNavController(navController)
+        navBot.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.navigation_scan -> {
+                    val intent = Intent(this, CameraActivity::class.java)
+                    startActivity(intent)
+                    return@setOnItemSelectedListener true
+                }
+                else -> {
+                    return@setOnItemSelectedListener true
+                }
+            }
+        }
 
     }
 }
