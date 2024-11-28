@@ -7,6 +7,7 @@ import android.text.InputType
 import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getUID
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ActivitySignInBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
@@ -54,7 +55,7 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if (currentUser != null){
+        if (currentUser != null || getUID(this) != null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

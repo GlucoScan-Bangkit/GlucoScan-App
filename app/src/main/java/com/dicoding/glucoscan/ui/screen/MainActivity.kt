@@ -3,6 +3,7 @@ package com.dicoding.glucoscan.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.deleteUID
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.glucoscan.R
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val navBot = binding.bottomNav
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navBot.setupWithNavController(navController)
