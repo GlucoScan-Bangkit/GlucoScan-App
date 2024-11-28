@@ -24,9 +24,25 @@ class MainActivity : AppCompatActivity() {
         navBot.setupWithNavController(navController)
         navBot.setOnItemSelectedListener { item ->
             when(item.itemId) {
+                R.id.navigation_home -> {
+                    navController.navigate(R.id.navigation_home)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.navigation_history -> {
+                    navController.navigate(R.id.navigation_history)
+                    return@setOnItemSelectedListener true
+                }
                 R.id.navigation_scan -> {
                     val intent = Intent(this, CameraActivity::class.java)
                     startActivity(intent)
+                    return@setOnItemSelectedListener false
+                }
+                R.id.navigation_notifications -> {
+                    navController.navigate(R.id.navigation_notifications)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.navigation_setting -> {
+                    navController.navigate(R.id.navigation_setting)
                     return@setOnItemSelectedListener true
                 }
                 else -> {
