@@ -78,6 +78,11 @@
     <string name="set_password">Buat kata sandi</string>
     <string name="edit_password">Ubah kata sandi</string>
 
+    //NEW PASSWORD
+    <string name="current_password">Kata sandi saat ini</string>
+    <string name="new_password">Kata sandi baru</string>
+    <string name="confirmation_password">Konfirmasi kata sandi</string>
+
 
 
     // *** BELOW THIS ARE FROM COMPONENT ***
@@ -91,6 +96,7 @@
     <string name="sign_up_email_button">Daftar dengan email</string>
     <string name="sign_in_google_button">Masuk dengan Google</string>
     <string name="sign_in_email_button">Masuk dengan email</string>
+    <string name="update_button">Perbarui</string>
 
     //email-verification
     <string name="verification_code_button">Verifikasi kode</string>
