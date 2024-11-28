@@ -12,7 +12,6 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.dicoding.glucoscan.databinding.ActivityCameraBinding
-import com.dicoding.picodiploma.mycamera.databinding.ActivityCameraBinding
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding

@@ -125,7 +125,7 @@
     <string name="email_invalid">Alamat email tidak memenuhi syarat.</string>
     <string name="email_registered">Alamat email sudah terdaftar, silakan gunakan alamat email yang lain.</string>
     <string name="email_not_registered">Email tersebut belum terdaftar, silakan buat akun terlebih dahulu.</string>
-    <string name="password_invalid">Kata sandi tidak memenuhi syarat.</string>
+    <string name="password_invalid">Kata sandi harus memiliki 8 karakter atau lebih.</string>
     <string name="wrong_password">Tolong perbaiki, kata sandi yang Anda masukkan salah.</string>
     <string name="wrong_password_confirmation">Kata sandi tidak sesuai.</string>
     <string name="wrong_code">Tolong perbaiki, sesuaikan kode dengan yang ada di inbox email.</string>

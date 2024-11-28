@@ -47,17 +47,17 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
         when(p0){
             binding.tietEmail.editableText -> {
                 if (!android.util.Patterns.EMAIL_ADDRESS.matcher(binding.tietEmail.text.toString()).matches()){
-                    binding.tietEmail.error = getString(R.string.email_tidak_valid)
+                    binding.tietEmail.error = getString(R.string.email_invalid)
                 }
             }
             binding.tietPassword.editableText -> {
                 if (binding.tietPassword.text.toString().length < 8){
-                    binding.tietPassword.error = getString(R.string.password_minimal_8_karakter)
+                    binding.tietPassword.error = getString(R.string.password_invalid)
                 }
             }
             binding.tietPasswordConfirmation.editableText -> {
                 if (binding.tietPassword.text.toString() != binding.tietPasswordConfirmation.text.toString()){
-                    binding.tietPasswordConfirmation.error = getString(R.string.password_tidak_sama)
+                    binding.tietPasswordConfirmation.error = getString(R.string.wrong_password_confirmation)
                 }
             }
         }

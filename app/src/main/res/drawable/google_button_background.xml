@@ -8,7 +8,7 @@
             <!-- Add rounded corners -->
             <corners android:radius="8dp" />
             <!-- Add stroke -->
-            <stroke android:color="@color/blue" android:width="0.5dp"/>
+            <stroke android:color="@color/blue_500" android:width="0.5dp"/>
         </shape>
     </item>
 
@@ -20,7 +20,7 @@
             <!-- Add rounded corners -->
             <corners android:radius="8dp" />
             <!-- Add stroke -->
-            <stroke android:color="@color/blue" android:width="0.5dp"/>
+            <stroke android:color="@color/blue_500" android:width="0.5dp"/>
         </shape>
     </item>
 </selector>

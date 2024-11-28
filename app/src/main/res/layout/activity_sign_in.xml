@@ -13,7 +13,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/logo"
+        android:contentDescription="logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/google_logo"
@@ -26,7 +26,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginVertical="16dp"
-        android:text="@string/masuk_akun"
+        android:text="@string/sign_in_title"
         app:layout_constraintTop_toBottomOf="@id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -108,7 +108,7 @@
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lupa_password"
+        android:text="@string/forgot_password"
         android:textColor="@color/blue_500"
         app:layout_constraintTop_toBottomOf="@id/tilPassword"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -117,7 +117,7 @@
         android:id="@+id/btnEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lanjutkan_dengan_email"
+        android:text="@string/sign_in_email_button"
         android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/llBottom"/>
 
@@ -133,14 +133,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/belum_punya_akun" />
+            android:text="@string/dont_have_account" />
 
         <TextView
             android:id="@+id/btnSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/daftar_akun"
+            android:text="@string/switch_to_sign_up"
             android:textColor="@color/blue_500" />
     </LinearLayout>
 
