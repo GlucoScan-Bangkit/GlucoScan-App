@@ -53,56 +53,19 @@
         android:textColor="@color/gray"
         android:textSize="16sp"/>
 
-    <TextView
-        android:id="@+id/titleEmail"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/email"
+        layout="@layout/component_input_field"
         app:layout_constraintTop_toBottomOf="@id/separator"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titleEmail"
-        android:layout_marginTop="4dp"
-        app:hintAnimationEnabled="false"
-        app:counterEnabled="false">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietEmail"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/titlePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/password"
-        app:layout_constraintTop_toBottomOf="@id/tilEmail"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword"
+    <include
+        android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titlePassword"
-        android:layout_marginTop="4dp"
-        app:hintAnimationEnabled="false"
-        app:counterEnabled="false">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietPassword"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:inputType="textPassword"
-            android:password="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        layout="@layout/component_input_field"
+        app:layout_constraintTop_toBottomOf="@id/emailInput"/>
 
     <TextView
         android:id="@+id/tvForgotPassword"
@@ -110,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
         android:textColor="@color/blue_500"
-        app:layout_constraintTop_toBottomOf="@id/tilPassword"
+        app:layout_constraintTop_toBottomOf="@id/passwordInput"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button

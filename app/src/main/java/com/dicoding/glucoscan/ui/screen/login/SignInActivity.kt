@@ -3,9 +3,11 @@ package com.dicoding.glucoscan.ui.screen.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ActivitySignInBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.MainActivity
@@ -25,15 +27,21 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        set inputBox
+        binding.emailInput.title.text = getString(R.string.email)
+        binding.emailInput.input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        binding.passwordInput.title.text = getString(R.string.password)
+        binding.passwordInput.input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
         auth = Firebase.auth
 
 //        check if input is empty
         binding.btnEmail.isEnabled = false
-        binding.tietEmail.addTextChangedListener(this)
-        binding.tietPassword.addTextChangedListener(this)
+        binding.emailInput.input.addTextChangedListener(this)
+        binding.passwordInput.input.addTextChangedListener(this)
 
         binding.btnEmail.setOnClickListener{
-            signInViewModel.setEmailPassword(binding.tietEmail.text.toString(), binding.tietPassword.text.toString())
+            signInViewModel.setEmailPassword(binding.emailInput.input.text.toString(), binding.passwordInput.input.text.toString())
             signInViewModel.signIn()
         }
 
@@ -58,7 +66,7 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
     }
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        binding.btnEmail.isEnabled = !binding.tietEmail.text.isNullOrEmpty() && !binding.tietPassword.text.isNullOrEmpty()
+        binding.btnEmail.isEnabled = !binding.emailInput.input.text.isNullOrEmpty() && !binding.passwordInput.input.text.isNullOrEmpty()
     }
 
     override fun afterTextChanged(p0: Editable?) {
