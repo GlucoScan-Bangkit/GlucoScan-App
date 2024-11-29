@@ -1,12 +1,15 @@
 package com.dicoding.glucoscan.ui.screen.scan
 
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -49,7 +52,7 @@ class CameraActivity : AppCompatActivity() {
         if (!allPermissionGranted()){
             requestPermissionLauncher.launch(REQUIRED_PERMISSIONS)
         }
-
+        binding.gallery.setOnClickListener { startGallery() }
         binding.captureImage.setOnClickListener { takePhoto() }
     }
 
@@ -57,6 +60,22 @@ class CameraActivity : AppCompatActivity() {
         super.onResume()
         hideSystemUI()
         startCamera()
+    }
+
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            val intent = Intent(this, ScanActivity::class.java)
+            intent.putExtra(EXTRA_CAMERAX_IMAGE, uri.toString())
+            startActivity(intent)
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
     }
 
     private fun startCamera() {
@@ -104,11 +123,9 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback{
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    Toast.makeText(
-                        this@CameraActivity,
-                        "Berhasil mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    val intent = Intent(this@CameraActivity, ScanActivity::class.java)
+                    intent.putExtra(EXTRA_CAMERAX_IMAGE, outputFileResults.savedUri.toString())
+                    startActivity(intent)
                 }
 
                 override fun onError(exception: ImageCaptureException) {
