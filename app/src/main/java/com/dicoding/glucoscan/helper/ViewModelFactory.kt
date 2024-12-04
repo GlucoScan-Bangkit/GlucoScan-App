@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.ui.screen.login.SignInViewModel
 import com.dicoding.glucoscan.ui.screen.login.SignUpViewModel
+import com.dicoding.glucoscan.ui.screen.scan.ScanViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
     companion object {
@@ -27,6 +28,8 @@ class ViewModelFactory private constructor(private val mApplication: Application
             return SignUpViewModel(mApplication) as T
         } else if (modelClass.isAssignableFrom(SignInViewModel::class.java)) {
             return SignInViewModel(mApplication) as T
+        } else if (modelClass.isAssignableFrom(ScanViewModel::class.java)) {
+            return ScanViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
