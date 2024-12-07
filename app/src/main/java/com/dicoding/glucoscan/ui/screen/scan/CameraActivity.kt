@@ -1,12 +1,17 @@
 package com.dicoding.glucoscan.ui.screen.scan
 
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.OrientationEventListener
+import android.view.Surface
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -22,6 +27,27 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+
+    private val orientationEventListener by lazy {
+        object : OrientationEventListener(this){
+            override fun onOrientationChanged(orientation: Int) {
+                if (orientation == ORIENTATION_UNKNOWN){
+                    return
+                }
+
+                val rotation = when (orientation){
+                    in 45 until 135 -> Surface.ROTATION_270
+                    in 135 until 225 -> Surface.ROTATION_180
+                    in 225 until 315 -> Surface.ROTATION_90
+                    in 315 until 360 -> Surface.ROTATION_0
+                    else -> Surface.ROTATION_0
+                }
+
+                imageCapture?.targetRotation = rotation
+            }
+
+        }
+    }
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -49,14 +75,40 @@ class CameraActivity : AppCompatActivity() {
         if (!allPermissionGranted()){
             requestPermissionLauncher.launch(REQUIRED_PERMISSIONS)
         }
-
+        binding.gallery.setOnClickListener { startGallery() }
         binding.captureImage.setOnClickListener { takePhoto() }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        orientationEventListener.enable()
     }
 
     public override fun onResume() {
         super.onResume()
         hideSystemUI()
         startCamera()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        orientationEventListener.disable()
+    }
+
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            val intent = Intent(this, ScanActivity::class.java)
+            intent.putExtra(EXTRA_CAMERAX_IMAGE, uri.toString())
+            startActivity(intent)
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
     }
 
     private fun startCamera() {
@@ -104,11 +156,9 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback{
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    Toast.makeText(
-                        this@CameraActivity,
-                        "Berhasil mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    val intent = Intent(this@CameraActivity, ScanActivity::class.java)
+                    intent.putExtra(EXTRA_CAMERAX_IMAGE, outputFileResults.savedUri.toString())
+                    startActivity(intent)
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -119,7 +169,6 @@ class CameraActivity : AppCompatActivity() {
                     ).show()
                     Log.e(TAG, "onError: ${exception.message}")
                 }
-
             }
         )
     }

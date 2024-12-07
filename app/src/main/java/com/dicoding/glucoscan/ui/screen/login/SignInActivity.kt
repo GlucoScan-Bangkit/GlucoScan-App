@@ -43,7 +43,7 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
 
         binding.btnEmail.setOnClickListener{
             signInViewModel.setEmailPassword(binding.emailInput.input.text.toString(), binding.passwordInput.input.text.toString())
-            signInViewModel.signIn()
+            signInViewModel.signIn2()
         }
 
         binding.btnSignup.setOnClickListener{

@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivitySignUpBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 
@@ -20,6 +23,28 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupView()
+        setupButton()
+    }
+
+    private fun setupView(){
+        signUpViewModel.registerResult.observe(this){ result ->
+            when(result){
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+                Result.Loading -> binding.progressBar.visibility = View.VISIBLE
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, result.data.message, Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+        }
+    }
+
+    private fun setupButton(){
 //        set inputBox
         binding.emailInput.title.text = getString(R.string.email)
         binding.emailInput.input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
