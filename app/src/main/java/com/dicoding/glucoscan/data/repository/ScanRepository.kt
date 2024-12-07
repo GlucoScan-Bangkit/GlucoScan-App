@@ -10,7 +10,7 @@ import retrofit2.HttpException
 
 class ScanRepository private constructor(
     private val apiService: ApiService
-){
+): Repository(){
     suspend fun scanImage(filePart: MultipartBody.Part): Result<ScanResponse> {
         return try {
             val response = apiService.scanImage(filePart)

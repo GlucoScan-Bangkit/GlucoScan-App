@@ -14,8 +14,3 @@ data class UserData(
     val email: String,
     val idToken: String
 )
-
-data class RegisterResponse(
-    val message: String,
-    val data: UserData
-)
