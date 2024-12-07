@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivityScanBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.MainActivity
@@ -32,14 +33,42 @@ class ScanActivity : AppCompatActivity() {
             viewModel.scanImage(uri)
         }
 
-        viewModel.scanResponse.observe(this) {
-            if (it != null) {
-                binding.containerWaiting.visibility = View.GONE
-                binding.containerScanSuccess.visibility = View.VISIBLE
-                binding.tvSuccessSugar.text = it
+        viewModel.scanResponse.observe(this) { result ->
+            when(result){
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.containerWaiting.visibility = View.GONE
+                    binding.containerScanFailed.visibility = View.VISIBLE
+                }
+                Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.containerWaiting.visibility = View.GONE
+                    binding.containerScanSuccess.visibility = View.VISIBLE
+                    val scanResponse = result.data
+                    val sugarContent = scanResponse.data?.sugarContent
+                    val scanDate = scanResponse.data?.scanDate
+                    binding.tvSuccessSugar.text = sugarContent
+                }
             }
         }
 
+        setupButton()
+    }
+
+    private fun setupButton(){
+//        failed button
+        binding.btnTryAgain.setOnClickListener {
+            finish()
+        }
+        binding.btnCancel.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+//        success button
         binding.btnBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

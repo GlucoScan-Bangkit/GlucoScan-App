@@ -169,7 +169,6 @@ class CameraActivity : AppCompatActivity() {
                     ).show()
                     Log.e(TAG, "onError: ${exception.message}")
                 }
-
             }
         )
     }
