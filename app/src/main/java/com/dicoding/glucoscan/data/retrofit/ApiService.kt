@@ -16,7 +16,9 @@ import java.io.File
 
 interface ApiService {
     @POST("login")
-    fun postLogin(@Body request: LoginRequest): Call<LoginResponse>
+    suspend fun postLogin(
+        @Body request: LoginRequest
+    ): LoginResponse
 
     @POST("register")
     suspend fun postRegister(

@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.glucoscan.data.EncryptedSharedPreference.getUID
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveUID
+import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivitySignInBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.MainActivity
@@ -28,15 +32,46 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = Firebase.auth
+
+        setupView()
+        setupButton()
+    }
+
+    private fun setupView(){
+        signInViewModel.loginResult.observe(this){ result ->
+            when(result){
+                is Result.Success -> {
+                    binding.progressBar.visibility = android.view.View.GONE
+                    val user = result.data.user
+                    saveUID(
+                        token = user?.token.toString(),
+                        context = this
+                    )
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun setupButton(){
+
 //        set inputBox
         binding.emailInput.title.text = getString(R.string.email)
         binding.emailInput.input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         binding.passwordInput.title.text = getString(R.string.password)
         binding.passwordInput.input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
-        auth = Firebase.auth
-
-//        check if input is empty
+        //        check if input is empty
         binding.btnEmail.isEnabled = false
         binding.emailInput.input.addTextChangedListener(this)
         binding.passwordInput.input.addTextChangedListener(this)
@@ -55,7 +90,7 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if (currentUser != null || getUID(this) != null){
+        if (currentUser != null || getToken(this) != null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

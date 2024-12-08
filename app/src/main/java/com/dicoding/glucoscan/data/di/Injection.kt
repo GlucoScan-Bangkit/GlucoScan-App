@@ -12,6 +12,7 @@ object Injection {
         return when(type){
             "scan" -> ScanRepository.getInstance(apiService) as T
             "register" -> LoginRepository.getInstance(apiService) as T
+            "login" -> LoginRepository.getInstance(apiService) as T
             else -> throw IllegalArgumentException("Unknown type: $type")
         }
     }

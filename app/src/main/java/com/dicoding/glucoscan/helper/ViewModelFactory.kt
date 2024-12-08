@@ -28,7 +28,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
         if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
             return SignUpViewModel(mApplication, Injection.provideRepository(mApplication, "register")) as T
         } else if (modelClass.isAssignableFrom(SignInViewModel::class.java)) {
-            return SignInViewModel(mApplication) as T
+            return SignInViewModel(mApplication, Injection.provideRepository(mApplication, "login")) as T
         } else if (modelClass.isAssignableFrom(ScanViewModel::class.java)) {
             return ScanViewModel(mApplication, Injection.provideRepository(mApplication, "scan")) as T
         }
