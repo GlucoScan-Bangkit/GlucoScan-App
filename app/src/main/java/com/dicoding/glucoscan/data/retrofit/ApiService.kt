@@ -1,5 +1,7 @@
 package com.dicoding.glucoscan.data.retrofit
 
+import com.dicoding.glucoscan.data.response.ChangeData
+import com.dicoding.glucoscan.data.response.ChangePasswordRequest
 import com.dicoding.glucoscan.data.response.ChangePasswordResponse
 import com.dicoding.glucoscan.data.response.DashboardResponse
 import com.dicoding.glucoscan.data.response.LoginRequest
@@ -43,11 +45,16 @@ interface ApiService {
         @Part file: MultipartBody.Part,
     ) : ScanResponse
 
-    @PATCH
+    @PATCH("dashboard/ChangePassword")
     suspend fun changePassword(
         @Header("Authorization") token: String,
-        @Field("passwordLama") oldPassword: String,
-        @Field("passwordBaru") newPassword: String
+        @Body request: ChangePasswordRequest
+    ) : ChangePasswordResponse
+
+    @PATCH("dashboard/gantiData")
+    suspend fun changeData(
+        @Header("Authorization") token: String,
+        @Body request: ChangeData
     ) : ChangePasswordResponse
 
     @GET("dashboard")

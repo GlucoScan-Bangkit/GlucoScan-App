@@ -20,7 +20,7 @@ class PasswordEditorViewModel(
 
     fun updatePassword(oldPassword: String, newPassword: String) {
         viewModelScope.launch {
-            _result.value = userRepository.updatePassword(getToken(mApplication)!!, oldPassword, newPassword)
+            _result.value = userRepository.updatePassword(getToken(mApplication.baseContext)!!, oldPassword, newPassword)
         }
     }
 }

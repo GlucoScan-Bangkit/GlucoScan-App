@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val homeViewModel =
             ViewModelProvider(this, ViewModelFactory.getInstance(requireActivity().application))[HomeViewModel::class.java]
-        homeViewModel.getDashboard(getToken(requireContext())!!)
+        homeViewModel.getDashboard()
 
         homeViewModel.user.observe(viewLifecycleOwner){ result ->
             when (result){

@@ -2,6 +2,8 @@ package com.dicoding.glucoscan.data.repository
 
 import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
 import com.dicoding.glucoscan.data.Result
+import com.dicoding.glucoscan.data.response.ChangeData
+import com.dicoding.glucoscan.data.response.ChangePasswordRequest
 import com.dicoding.glucoscan.data.response.ChangePasswordResponse
 import com.dicoding.glucoscan.data.response.DashboardResponse
 import com.dicoding.glucoscan.data.retrofit.ApiService
@@ -20,7 +22,16 @@ class UserRepository(
 
     suspend fun updatePassword(token: String, oldPassword: String, newPassword: String) : Result<ChangePasswordResponse> {
         return try {
-            val response = apiService.changePassword("Bearer $token", oldPassword, newPassword)
+            val response = apiService.changePassword("Bearer $token", ChangePasswordRequest(oldPassword, newPassword))
+            Result.Success(response)
+        } catch (e: Exception) {
+            Result.Error(e.message.toString())
+        }
+    }
+
+    suspend fun changeData(token: String, name: String, email: String) : Result<ChangePasswordResponse> {
+        return try {
+            val response = apiService.changeData("Bearer $token", ChangeData(name, email))
             Result.Success(response)
         } catch (e: Exception) {
             Result.Error(e.message.toString())

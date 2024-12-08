@@ -18,6 +18,7 @@ object Injection {
             "logout" -> LoginRepository.getInstance(apiService) as T
             "home" -> UserRepository.getInstance(apiService) as T
             "changePassword" -> UserRepository.getInstance(apiService) as T
+            "changeData" -> UserRepository.getInstance(apiService) as T
             else -> throw IllegalArgumentException("Unknown type: $type")
         }
     }

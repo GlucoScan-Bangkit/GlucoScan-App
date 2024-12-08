@@ -20,9 +20,9 @@ class HomeViewModel(private val mApplication: Application, private val repositor
     }
     val daily: LiveData<String> = _daily
 
-    fun getDashboard(token: String) {
+    fun getDashboard() {
         viewModelScope.launch {
-            _user.value = repository.getDashboard(token)
+            _user.value = repository.getDashboard(getToken(mApplication.baseContext)!!)
         }
     }
 
