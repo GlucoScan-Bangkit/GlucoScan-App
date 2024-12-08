@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.deleteToken
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
 import com.dicoding.glucoscan.databinding.FragmentSettingBinding
+import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.screen.login.SignInActivity
 import com.dicoding.glucoscan.ui.screen.usereditor.PasswordEditorActivity
 import com.dicoding.glucoscan.ui.screen.usereditor.ProfileEditorActivity
@@ -29,7 +32,7 @@ class SettingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val settingViewModel =
-            ViewModelProvider(this)[SettingViewModel::class.java]
+            ViewModelProvider(this, ViewModelFactory.getInstance(requireActivity().application))[SettingViewModel::class.java]
 
         binding = FragmentSettingBinding.inflate(inflater, container, false)
 
@@ -51,6 +54,8 @@ class SettingFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener{
             auth.signOut()
+            settingViewModel.logout(getToken(requireContext())!!)
+            deleteToken(requireContext())
             val intent = Intent(requireContext(), SignInActivity::class.java)
             startActivity(intent)
             requireActivity().finish()

@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveUID
 import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.data.repository.LoginRepository
 import com.dicoding.glucoscan.data.response.LoginRequest

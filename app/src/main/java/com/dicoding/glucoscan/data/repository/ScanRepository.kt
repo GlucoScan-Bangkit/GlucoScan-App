@@ -11,9 +11,9 @@ import retrofit2.HttpException
 class ScanRepository private constructor(
     private val apiService: ApiService
 ): Repository(){
-    suspend fun scanImage(filePart: MultipartBody.Part): Result<ScanResponse> {
+    suspend fun scanImage(token: String, filePart: MultipartBody.Part): Result<ScanResponse> {
         return try {
-            val response = apiService.scanImage(filePart)
+            val response = apiService.scanImage("Bearer $token", filePart)
             if (response.error == false){
                 Result.Success(response)
             } else {

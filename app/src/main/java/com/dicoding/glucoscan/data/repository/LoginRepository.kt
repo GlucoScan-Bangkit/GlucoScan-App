@@ -4,6 +4,7 @@ import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.data.repository.ScanRepository.Companion
 import com.dicoding.glucoscan.data.response.LoginRequest
 import com.dicoding.glucoscan.data.response.LoginResponse
+import com.dicoding.glucoscan.data.response.LogoutResponse
 import com.dicoding.glucoscan.data.response.RegisterRequest
 import com.dicoding.glucoscan.data.response.RegisterResponse
 import com.dicoding.glucoscan.data.retrofit.ApiService
@@ -28,6 +29,19 @@ class LoginRepository private constructor(
         return try {
             val response = apiService.postLogin(LoginRequest(email, password))
             if (response.message == "Login berhasil"){
+                Result.Success(response)
+            } else {
+                Result.Error(response.message ?: "Unknown error")
+            }
+        } catch (e: Exception) {
+            Result.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun logout(token: String) : Result<LogoutResponse> {
+        return try {
+            val response = apiService.postLogout("Bearer $token")
+            if (response.message == "Logout berhasil"){
                 Result.Success(response)
             } else {
                 Result.Error(response.message ?: "Unknown error")

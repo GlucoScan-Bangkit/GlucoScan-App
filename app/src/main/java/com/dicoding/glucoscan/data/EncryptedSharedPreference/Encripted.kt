@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
-fun saveUID(token: String, context: Context){
+fun saveToken(token: String, context: Context){
     val masterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
@@ -38,7 +38,7 @@ fun getToken(context: Context): String? {
     return sharedPreferences.getString("token", null)
 }
 
-fun deleteUID(context: Context){
+fun deleteToken(context: Context){
     val masterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
@@ -51,5 +51,5 @@ fun deleteUID(context: Context){
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )
 
-    sharedPreferences.edit().remove("uid").apply()
+    sharedPreferences.edit().remove("token").apply()
 }

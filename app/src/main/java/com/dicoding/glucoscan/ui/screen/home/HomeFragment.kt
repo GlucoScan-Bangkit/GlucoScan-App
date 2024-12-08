@@ -6,11 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
+import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.FragmentHomeBinding
 import com.dicoding.glucoscan.helper.DailyRoundedAdapter
+import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.screen.scan.CameraActivity
 
 class HomeFragment : Fragment() {
@@ -23,7 +28,25 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+            ViewModelProvider(this, ViewModelFactory.getInstance(requireActivity().application))[HomeViewModel::class.java]
+        homeViewModel.getDashboard(getToken(requireContext())!!)
+
+        homeViewModel.user.observe(viewLifecycleOwner){ result ->
+            when (result){
+                is Result.Success -> {
+                    Glide.with(requireContext())
+                        .load(result.data.user?.profilePicture)
+                        .into(binding.ivProfile)
+                    binding.tvUsername.text = result.data.user?.name
+                }
+                is Result.Loading -> {
+
+                }
+                is Result.Error -> {
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 

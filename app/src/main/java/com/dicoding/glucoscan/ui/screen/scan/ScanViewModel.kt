@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
 import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.data.repository.ScanRepository
 import com.dicoding.glucoscan.data.response.ScanResponse
@@ -30,7 +31,7 @@ class ScanViewModel(private val mApplication: Application, private val scanRepos
         val filePart = MultipartBody.Part.createFormData("file", file.name, requestBody)
 
         viewModelScope.launch {
-            _scanResponse.value = scanRepository.scanImage(filePart)
+            _scanResponse.value = scanRepository.scanImage(getToken(mApplication.baseContext)!!, filePart)
         }
     }
 }

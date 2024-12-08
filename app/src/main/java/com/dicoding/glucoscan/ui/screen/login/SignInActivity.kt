@@ -11,7 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
-import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveUID
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveToken
 import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivitySignInBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
@@ -42,9 +42,9 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
         signInViewModel.loginResult.observe(this){ result ->
             when(result){
                 is Result.Success -> {
-                    binding.progressBar.visibility = android.view.View.GONE
+                    binding.progressBar.visibility = View.GONE
                     val user = result.data.user
-                    saveUID(
+                    saveToken(
                         token = user?.token.toString(),
                         context = this
                     )
