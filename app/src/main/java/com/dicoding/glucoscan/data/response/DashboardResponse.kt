@@ -22,3 +22,8 @@ data class UserData(
 	@field:SerializedName("email")
 	val email: String? = null
 )
+
+data class ChangePasswordResponse(
+	@field:SerializedName("message")
+	val message: String? = null
+)

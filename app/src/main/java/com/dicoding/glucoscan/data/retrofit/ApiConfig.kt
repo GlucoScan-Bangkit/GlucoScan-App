@@ -1,5 +1,6 @@
 package com.dicoding.glucoscan.data.retrofit
 
+import android.util.Log
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
@@ -14,11 +15,13 @@ class ApiConfig {
             private val cookieStore = HashMap<HttpUrl, List<Cookie>>()
 
             override fun loadForRequest(url: HttpUrl): List<Cookie> {
+                Log.d("ApiConfig", "loadForRequest: ${cookieStore[url]}")
                 return cookieStore[url] ?: emptyList()
             }
 
             override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
                 cookieStore[url] = cookies
+                Log.d("ApiConfig", "saveFromResponse: $cookies")
             }
         }
 

@@ -9,6 +9,7 @@ import com.dicoding.glucoscan.ui.screen.login.SignInViewModel
 import com.dicoding.glucoscan.ui.screen.login.SignUpViewModel
 import com.dicoding.glucoscan.ui.screen.scan.ScanViewModel
 import com.dicoding.glucoscan.ui.screen.setting.SettingViewModel
+import com.dicoding.glucoscan.ui.screen.usereditor.PasswordEditorViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
     companion object {
@@ -37,6 +38,8 @@ class ViewModelFactory private constructor(private val mApplication: Application
             return HomeViewModel(mApplication, Injection.provideRepository(mApplication, "home")) as T
         } else if (modelClass.isAssignableFrom(SettingViewModel::class.java)) {
             return SettingViewModel(mApplication, Injection.provideRepository(mApplication, "logout")) as T
+        } else if (modelClass.isAssignableFrom(PasswordEditorViewModel::class.java)) {
+            return PasswordEditorViewModel(mApplication, Injection.provideRepository(mApplication, "changePassword")) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
