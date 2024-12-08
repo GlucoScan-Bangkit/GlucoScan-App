@@ -3,7 +3,6 @@ package com.dicoding.glucoscan.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.glucoscan.data.EncryptedSharedPreference.deleteUID
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.glucoscan.R

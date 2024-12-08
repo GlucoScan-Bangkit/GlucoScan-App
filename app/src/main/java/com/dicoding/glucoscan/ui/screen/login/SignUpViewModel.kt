@@ -6,19 +6,26 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveUID
+import androidx.lifecycle.viewModelScope
+import com.dicoding.glucoscan.data.Result
+import com.dicoding.glucoscan.data.repository.LoginRepository
 import com.dicoding.glucoscan.data.response.RegisterRequest
 import com.dicoding.glucoscan.data.response.RegisterResponse
 import com.dicoding.glucoscan.data.retrofit.ApiConfig
 import com.dicoding.glucoscan.helper.FirebaseHelper
 import com.dicoding.glucoscan.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpViewModel(private val mApplication: Application) : ViewModel() {
+class SignUpViewModel(private val mApplication: Application, private val registerRepository: LoginRepository) : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
+
+    private val _registerResult = MutableLiveData<Result<RegisterResponse>>()
+    val registerResult: LiveData<Result<RegisterResponse>> = _registerResult
+
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email
@@ -39,37 +46,11 @@ class SignUpViewModel(private val mApplication: Application) : ViewModel() {
     }
 
     fun signUp2(){
-        val client = ApiConfig.getApiService().postRegister(
-            RegisterRequest(
-                name = "name",
-                email = email.value.toString(),
-                password = password.value.toString()
-        ))
-        client.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(p0: Call<RegisterResponse>, p1: Response<RegisterResponse>) {
-                if (p1.isSuccessful) {
-                    val responseBody = p1.body()
-                    if (responseBody != null) {
-                        // Signup berhasil
-                        Log.d("Sign up", "Success")
-                        saveUID(
-                            uid = p1.body()?.data?.idToken.toString(),
-                            context = mApplication.baseContext
-                        )
-                        val intent = Intent(mApplication.baseContext, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        mApplication.baseContext.startActivity(intent)
-                    }
-                } else {
-                    Log.e(TAG, "onFailure: ${p1.message()}")
-                }
-            }
-
-            override fun onFailure(p0: Call<RegisterResponse>, p1: Throwable) {
-                Log.e(TAG, "onFailure: ${p1.message}")
-            }
-
-        })
+        viewModelScope.launch {
+            _registerResult.value = Result.Loading
+            val result = registerRepository.register(email.value.toString(), email.value.toString(), password.value.toString())
+            _registerResult.value = result
+        }
     }
 
     companion object{
