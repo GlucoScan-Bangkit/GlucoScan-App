@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.FragmentHistoryBinding
+import com.dicoding.glucoscan.helper.HistoryAdapter
 import com.dicoding.glucoscan.helper.RiwayatRoundedAdapter
+import com.dicoding.glucoscan.helper.timeStamp
 
 class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
@@ -21,11 +23,20 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHistoryBinding.inflate(layoutInflater)
-        binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvRiwayat.adapter = RiwayatRoundedAdapter(viewModel.getHistoryData().take(7))
 
+        setupView()
         setupAction()
         return binding.root
+    }
+
+    private fun setupView(){
+        binding.titleMonth.text = timeStamp("monthName")
+
+        binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRiwayat.adapter = RiwayatRoundedAdapter(viewModel.getDate().take(7))
+
+        binding.rvRiwayatActivity.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvRiwayatActivity.adapter = HistoryAdapter(viewModel.getDate().take(7))
     }
 
     private fun setupAction(){

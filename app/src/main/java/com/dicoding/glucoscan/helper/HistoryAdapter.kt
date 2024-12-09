@@ -1,11 +1,9 @@
 package com.dicoding.glucoscan.helper
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.ItemRiwayatActivityBinding
 
 class HistoryAdapter(private val items: List<String>) :
@@ -21,7 +19,7 @@ class HistoryAdapter(private val items: List<String>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemRiwayatActivityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }

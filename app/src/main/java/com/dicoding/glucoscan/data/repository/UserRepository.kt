@@ -24,7 +24,7 @@ class UserRepository(
                     Result.Error(responseBody?.message ?: "Unknown error")
                 }
             } else {
-                val errorBody = response.errorBody()?.string() ?: "Unknown error"
+                val errorBody = parseError(response.errorBody()?.string())
                 Result.Error(errorBody)
             }
         } catch (e: Exception){
