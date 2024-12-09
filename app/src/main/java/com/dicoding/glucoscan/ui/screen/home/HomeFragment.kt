@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -20,17 +21,24 @@ import com.dicoding.glucoscan.ui.screen.scan.CameraActivity
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val homeViewModel =
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        homeViewModel =
             ViewModelProvider(this, ViewModelFactory.getInstance(requireActivity().application))[HomeViewModel::class.java]
         homeViewModel.getDashboard()
 
+        setupView()
+        setupAction()
+        return binding.root
+    }
+
+    private fun setupView(){
         homeViewModel.user.observe(viewLifecycleOwner){ result ->
             when (result){
                 is Result.Success -> {
@@ -48,15 +56,27 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         binding.recyclerDailyRounded.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerDailyRounded.adapter = DailyRoundedAdapter(homeViewModel.getDailyRoundedData().take(7))
+    }
+
+    private fun setupAction(){
+        binding.overlayView.setOnTouchListener { view, motionEvent -> true }
+
+        binding.llRekomendasiCard.setOnClickListener {
+            binding.overlayView.visibility = View.VISIBLE
+            binding.popUpInfoCard.visibility = View.VISIBLE
+        }
+
+        binding.btnClose.setOnClickListener {
+            binding.overlayView.visibility = View.GONE
+            binding.popUpInfoCard.visibility = View.GONE
+        }
+
         binding.ivScan.setOnClickListener {
             val intent = Intent(requireContext(), CameraActivity::class.java)
             startActivity(intent)
         }
-        return binding.root
     }
 
 }

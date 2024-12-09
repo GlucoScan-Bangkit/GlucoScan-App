@@ -139,7 +139,7 @@
     //POPUP
     //sugar-intake-info
     <string name="info_title">Information</string>
-    <string name="info_subtitle">The WHO recommends that adults and children consume no more than 10% of their daily energy intake from sugar, which is about 12 teaspoons (50 grams) per day.</string>
+    <string name="info_subtitle">WHO merekomendasikan asupan gula harian untuk orang dewasa dibatasi hingga 10% dari kebutuhan energi, sekitar 12 sendok teh (50 gram)</string>
 
     //camera-info
     <string name="camera_subtitle">Pastikan Anda mengambil foto dengan jelas agar kami dapat memindai informasi nutrisi dengan mudah.</string>
