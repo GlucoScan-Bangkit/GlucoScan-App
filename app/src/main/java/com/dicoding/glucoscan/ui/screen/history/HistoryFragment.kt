@@ -23,6 +23,21 @@ class HistoryFragment : Fragment() {
         binding = FragmentHistoryBinding.inflate(layoutInflater)
         binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRiwayat.adapter = RiwayatRoundedAdapter(viewModel.getHistoryData().take(7))
+
+        setupAction()
         return binding.root
+    }
+
+    private fun setupAction(){
+        binding.overlayView.setOnTouchListener { view, motionEvent ->
+            binding.overlayView.visibility = View.GONE
+            binding.popUpInfoCard.visibility = View.GONE
+            true
+        }
+
+        binding.informationCard.setOnClickListener {
+            binding.overlayView.visibility = View.VISIBLE
+            binding.popUpInfoCard.visibility = View.VISIBLE
+        }
     }
 }

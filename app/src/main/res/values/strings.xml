@@ -165,5 +165,11 @@
     //TOAST
     <string name="profile_update">Profil berhasil diubah.</string>
     <string name="password_update">Password berhasil diubah.</string>
+    <string name="history_information">
+        Berikut adalah kategori status asupan gula harian:\n
+        • Aman: 0 - 50 gram\n
+        • Waspada: 51 - 100 gram\n
+        • Bahaya: >= 101 gram
+    </string>
 
 </resources>

@@ -98,18 +98,18 @@ class DailyRounded : View {
 
     private fun updateBackgroundColor() {
         backgroundPaint.color = when (_data?.toIntOrNull()) {
-            in 1..40 -> context.getColor(R.color.green_300)
-            in 41..70 -> context.getColor(R.color.yellow_300)
-            in 71..Int.MAX_VALUE -> context.getColor(R.color.red_300)
+            in 1..50 -> context.getColor(R.color.green_300)
+            in 51..100 -> context.getColor(R.color.yellow_300)
+            in 101..Int.MAX_VALUE -> context.getColor(R.color.red_300)
             else -> Color.LTGRAY
         }
     }
 
     private fun updateTextColor(){
         color = when (_data?.toIntOrNull()) {
-            in 1..40 -> context.getColor(R.color.green_900)
-            in 41..70 -> context.getColor(R.color.yellow_900)
-            in 71..Int.MAX_VALUE -> context.getColor(R.color.red_900)
+            in 1..50 -> context.getColor(R.color.green_900)
+            in 51..100 -> context.getColor(R.color.yellow_900)
+            in 101..Int.MAX_VALUE -> context.getColor(R.color.red_900)
             else -> context.getColor(R.color.neutral_900)
         }
     }
