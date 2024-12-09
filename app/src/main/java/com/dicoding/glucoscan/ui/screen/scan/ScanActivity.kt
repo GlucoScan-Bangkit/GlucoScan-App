@@ -50,7 +50,9 @@ class ScanActivity : AppCompatActivity() {
                     val scanResponse = result.data
                     val sugarContent = scanResponse.data?.sugarContent
                     val scanDate = scanResponse.data?.scanDate
-                    binding.tvSuccessSugar.text = sugarContent
+                    
+                    binding.scanSuccessResult.tvSugar.text = sugarContent
+                    binding.scanSuccessResult.tvTime.text = scanDate
                 }
             }
         }

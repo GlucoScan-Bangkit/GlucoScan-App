@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.data.di.Injection
+import com.dicoding.glucoscan.ui.screen.history.HistoryViewModel
 import com.dicoding.glucoscan.ui.screen.home.HomeViewModel
 import com.dicoding.glucoscan.ui.screen.login.SignInViewModel
 import com.dicoding.glucoscan.ui.screen.login.SignUpViewModel
@@ -43,6 +44,8 @@ class ViewModelFactory private constructor(private val mApplication: Application
             return PasswordEditorViewModel(mApplication, Injection.provideRepository(mApplication, "changePassword")) as T
         } else if (modelClass.isAssignableFrom(ProfileEditorViewModel::class.java)) {
             return ProfileEditorViewModel(mApplication, Injection.provideRepository(mApplication, "changeData")) as T
+        } else if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
+            return HistoryViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

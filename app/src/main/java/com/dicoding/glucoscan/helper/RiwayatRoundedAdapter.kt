@@ -1,29 +1,52 @@
 package com.dicoding.glucoscan.helper
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.databinding.ItemDailyRoundedBinding
 import com.dicoding.glucoscan.helper.DailyRoundedAdapter.ViewHolder
 import com.dicoding.glucoscan.ui.component.DailyRounded
 
-class RiwayatRoundedAdapter(private val items: List<String>) :
-    RecyclerView.Adapter<RiwayatRoundedAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val riwayatRounded: DailyRounded = view.findViewById(R.id.dailyRoundedView)
+class RiwayatRoundedAdapter(
+    private val items: List<String>,
+    private val onItemClick: (String) -> Unit
+) : RecyclerView.Adapter<RiwayatRoundedAdapter.ViewHolder>() {
+
+        private var selectedPosition = 0
+
+    class ViewHolder(private val binding: ItemDailyRoundedBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: String, isSelected: Boolean) {
+            binding.dailyRoundedView.data = item
+            binding.dailyRoundedView.dimension = 28f
+            if (isSelected) {
+                binding.dailyRoundedView.color = binding.root.context.getColor(R.color.white)
+                binding.dailyRoundedView.customBackgroundColor = binding.root.context.getColor(R.color.blue_500)
+            } else {
+                binding.dailyRoundedView.color = binding.root.context.getColor(R.color.neutral_900)
+                binding.dailyRoundedView.customBackgroundColor = binding.root.context.getColor(R.color.gray_400)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_riwayat_rounded, parent, false)
-        return ViewHolder(view)
+        val binding = ItemDailyRoundedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.riwayatRounded.data = items[position]
-        holder.riwayatRounded.dimension = 28f
+        holder.bind(items[position], position == selectedPosition)
+        holder.itemView.setOnClickListener {
+            val previousSelectedPosition = selectedPosition
+            selectedPosition = holder.adapterPosition
+            notifyItemChanged(previousSelectedPosition)
+            notifyItemChanged(selectedPosition)
+
+            onItemClick(items[position])
+        }
     }
 }

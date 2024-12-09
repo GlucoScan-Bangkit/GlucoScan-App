@@ -13,9 +13,9 @@ class HistoryAdapter(private val items: List<String>) :
             Glide.with(binding.root.context)
                 .load(item)
                 .into(binding.ivImage)
-            binding.tvTime.text = item
-            binding.tvSugar.text = item
-            binding.tvSpoon.text = item
+            binding.tvTime.text = "$item WIB"
+            binding.tvSugar.text = "$item gr"
+            binding.tvSpoon.text = "$item Sdm"
         }
     }
 

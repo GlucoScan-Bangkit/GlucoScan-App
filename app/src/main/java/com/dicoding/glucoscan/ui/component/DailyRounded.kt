@@ -18,6 +18,7 @@ class DailyRounded : View {
 
     private var _data: String? = null
     private var _color: Int = Color.RED
+    private var _customBackgroundColor: Int = Color.LTGRAY
     private var _dimension: Float = 0f
 
     private lateinit var textPaint: TextPaint
@@ -46,6 +47,15 @@ class DailyRounded : View {
         set(value) {
             _color = value
             invalidateTextPaintAndMeasurements()
+        }
+
+    var customBackgroundColor: Int
+        get() = _customBackgroundColor
+        set(value) {
+            _customBackgroundColor = value
+            updateBackgroundColor()
+            invalidateTextPaintAndMeasurements()
+            invalidate()
         }
 
     var dimension: Float
@@ -78,6 +88,9 @@ class DailyRounded : View {
         _color = a.getColor(
                 R.styleable.DailyRounded_color,
                 color)
+        _customBackgroundColor = a.getColor(
+                R.styleable.DailyRounded_backgroundColor,
+                customBackgroundColor)
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
         _dimension = a.getDimension(
@@ -97,11 +110,15 @@ class DailyRounded : View {
     }
 
     private fun updateBackgroundColor() {
-        backgroundPaint.color = when (_data?.toIntOrNull()) {
-            in 1..50 -> context.getColor(R.color.green_300)
-            in 51..100 -> context.getColor(R.color.yellow_300)
-            in 101..Int.MAX_VALUE -> context.getColor(R.color.red_300)
-            else -> Color.LTGRAY
+        if (customBackgroundColor == Color.LTGRAY) {
+            backgroundPaint.color = when (_data?.toIntOrNull()) {
+                in 1..50 -> context.getColor(R.color.green_300)
+                in 51..100 -> context.getColor(R.color.yellow_300)
+                in 101..Int.MAX_VALUE -> context.getColor(R.color.red_300)
+                else -> Color.LTGRAY
+            }
+        } else {
+            backgroundPaint.color = customBackgroundColor
         }
     }
 

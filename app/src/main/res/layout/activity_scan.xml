@@ -23,7 +23,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerWaiting"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
         <ImageView
             android:id="@+id/ivWaiting"
             android:layout_width="match_parent"
@@ -105,8 +106,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerScanSuccess"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
         <ImageView
             android:id="@+id/ivSucces"
             android:layout_width="match_parent"
@@ -117,29 +117,27 @@
             android:id="@+id/scanSuccessTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:text="Hore Hasil scan-mu sudah berhasil tersimpan🎉"
             app:layout_constraintTop_toBottomOf="@id/ivSucces"/>
         <TextView
             android:id="@+id/scanSuccessSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="Yuk kita jaga kesehatan berrsama dan capai tujuan hidup yang lebih sehat!"
             app:layout_constraintTop_toBottomOf="@id/scanSuccessTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <ImageView
-            android:id="@+id/ivSuccessImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scanSuccessSubtitle"/>
 
-        <TextView
-            android:id="@+id/tvSuccessSugar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/ivSuccessImage"
-            app:layout_constraintTop_toTopOf="@id/ivSuccessImage"/>
+        <include
+            android:id="@+id/scanSuccessResult"
+            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            layout="@layout/item_riwayat_activity"
+            app:layout_constraintTop_toBottomOf="@id/scanSuccessSubtitle"
+            app:layout_constraintBottom_toTopOf="@id/btnBack"/>
 
         <Button
             android:id="@+id/btnBack"

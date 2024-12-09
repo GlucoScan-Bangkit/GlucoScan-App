@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
                     Glide.with(requireContext())
                         .load(result.data.user?.profilePicture)
                         .into(binding.ivProfile)
-                    binding.tvUsername.text = result.data.user?.name
+                    binding.tvUsername.text = "Halo, ${result.data.user?.name}"
                 }
                 is Result.Loading -> {
 
