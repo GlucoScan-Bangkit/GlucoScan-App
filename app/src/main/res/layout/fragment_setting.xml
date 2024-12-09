@@ -16,7 +16,7 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:shapeAppearanceOverlay="@style/CircularImage"
-        tools:src="@tools:sample/avatars"
+        android:src="@drawable/default_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

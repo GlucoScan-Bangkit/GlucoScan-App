@@ -1,6 +1,7 @@
 package com.dicoding.glucoscan.data.retrofit
 
 import com.dicoding.glucoscan.data.response.ChangeData
+import com.dicoding.glucoscan.data.response.ChangeDataResponse
 import com.dicoding.glucoscan.data.response.ChangePasswordRequest
 import com.dicoding.glucoscan.data.response.ChangePasswordResponse
 import com.dicoding.glucoscan.data.response.DashboardResponse
@@ -12,6 +13,7 @@ import com.dicoding.glucoscan.data.response.RegisterResponse
 import com.dicoding.glucoscan.data.response.ScanResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.GET
@@ -26,39 +28,39 @@ interface ApiService {
     @POST("login")
     suspend fun postLogin(
         @Body request: LoginRequest
-    ): LoginResponse
+    ): Response<LoginResponse>
 
     @POST("register")
     suspend fun postRegister(
         @Body request: RegisterRequest
-    ): RegisterResponse
+    ): Response<RegisterResponse>
 
     @POST("logout")
     suspend fun postLogout(
         @Header("Authorization") token: String
-    ): LogoutResponse
+    ): Response<LogoutResponse>
 
     @Multipart
     @POST("predict")
     suspend fun scanImage(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
-    ) : ScanResponse
+    ) : Response<ScanResponse>
 
     @PATCH("dashboard/ChangePassword")
     suspend fun changePassword(
         @Header("Authorization") token: String,
         @Body request: ChangePasswordRequest
-    ) : ChangePasswordResponse
+    ) : Response<ChangePasswordResponse>
 
     @PATCH("dashboard/gantiData")
     suspend fun changeData(
         @Header("Authorization") token: String,
         @Body request: ChangeData
-    ) : ChangePasswordResponse
+    ) : Response<ChangeDataResponse>
 
     @GET("dashboard")
     suspend fun getDashboard(
         @Header("Authorization") token: String
-    ) : DashboardResponse
+    ) : Response<DashboardResponse>
 }

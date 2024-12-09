@@ -23,7 +23,7 @@ class DailyRoundedAdapter(private val items: List<String>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.dailyRounded.data = items[position]
-        holder.dailyRounded.dimension = 10f
+        holder.dailyRounded.dimension = 28f
     }
 
     override fun getItemCount() = items.size

@@ -14,10 +14,16 @@ class ScanRepository private constructor(
     suspend fun scanImage(token: String, filePart: MultipartBody.Part): Result<ScanResponse> {
         return try {
             val response = apiService.scanImage("Bearer $token", filePart)
-            if (response.error == false){
-                Result.Success(response)
+            if (response.isSuccessful){
+                val responseBody = response.body()
+                if (responseBody?.error == false){
+                    Result.Success(responseBody)
+                } else {
+                    Result.Error(responseBody?.message ?: "Unknown error")
+                }
             } else {
-                Result.Error((response.error ?: "Unknown error").toString())
+                val errorBody = parseError(response.errorBody()?.string())
+                Result.Error(errorBody)
             }
         } catch (e: HttpException) {
             Result.Error(e.message ?: "Unknown error")

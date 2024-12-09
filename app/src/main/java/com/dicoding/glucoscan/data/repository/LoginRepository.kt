@@ -15,10 +15,16 @@ class LoginRepository private constructor(
     suspend fun register(name: String, email: String, password: String): Result<RegisterResponse> {
         return try {
             val response = apiService.postRegister(RegisterRequest(name, email, password))
-            if (response.message == "Registrasi berhasil"){
-                Result.Success(response)
+            if (response.isSuccessful){
+                val responseBody = response.body()
+                if (responseBody?.message == "Registrasi berhasil"){
+                    Result.Success(responseBody)
+                } else {
+                    Result.Error(responseBody?.message ?: "Unknown error")
+                }
             } else {
-                Result.Error(response.message ?: "Unknown error")
+                val errorBody = parseError(response.errorBody()?.string())
+                Result.Error(errorBody)
             }
         } catch (e: Exception) {
             Result.Error(e.message ?: "Unknown error")
@@ -28,10 +34,16 @@ class LoginRepository private constructor(
     suspend fun login(email: String, password: String): Result<LoginResponse> {
         return try {
             val response = apiService.postLogin(LoginRequest(email, password))
-            if (response.message == "Login berhasil"){
-                Result.Success(response)
+            if (response.isSuccessful){
+                val responseBody = response.body()
+                if (responseBody?.message == "Login berhasil"){
+                    Result.Success(responseBody)
+                } else {
+                    Result.Error(responseBody?.message ?: "Unknown error")
+                }
             } else {
-                Result.Error(response.message ?: "Unknown error")
+                val errorBody = parseError(response.errorBody()?.string())
+                Result.Error(errorBody)
             }
         } catch (e: Exception) {
             Result.Error(e.message ?: "Unknown error")
@@ -41,10 +53,16 @@ class LoginRepository private constructor(
     suspend fun logout(token: String) : Result<LogoutResponse> {
         return try {
             val response = apiService.postLogout("Bearer $token")
-            if (response.message == "Logout berhasil"){
-                Result.Success(response)
+            if (response.isSuccessful){
+                val responseBody = response.body()
+                if (responseBody?.message == "Logout berhasil"){
+                    Result.Success(responseBody)
+                } else {
+                    Result.Error(responseBody?.message ?: "Unknown error")
+                }
             } else {
-                Result.Error(response.message ?: "Unknown error")
+                val errorBody = parseError(response.errorBody()?.string())
+                Result.Error(errorBody)
             }
         } catch (e: Exception) {
             Result.Error(e.message ?: "Unknown error")

@@ -27,6 +27,6 @@ class HomeViewModel(private val mApplication: Application, private val repositor
     }
 
     fun getDailyRoundedData() : List<String> {
-        return listOf("0 gr", "100 gr", "200 gr", "300 gr" , "100 gr", "200 gr", "300 gr", "100 gr", "200 gr", "300 gr")
+        return listOf("0", "10", "20", "30" , "100", "200", "300", "10", "20", "30")
     }
 }

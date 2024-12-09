@@ -33,7 +33,7 @@
             android:layout_height="50dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/CircularImage"
-            tools:src="@tools:sample/avatars"
+            android:src="@drawable/default_profile"
             app:layout_constraintTop_toTopOf="@id/tvUsername"
             app:layout_constraintRight_toRightOf="parent"/>
 
@@ -43,8 +43,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="10dp"
             android:padding="16dp"
-            android:background="@drawable/custom_edittext_border"
+            android:elevation="8dp"
+            android:background="@color/blue_100"
             app:layout_constraintTop_toBottomOf="@id/tvWelcome">
             <TextView
                 android:layout_width="0dp"
@@ -103,14 +105,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvQuickScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Quick scan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clStatistik"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_marginTop="32dp"
+            android:padding="32dp"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:background="@drawable/custom_edittext_border"
-            app:layout_constraintTop_toBottomOf="@id/clStatistik">
+            app:layout_constraintTop_toBottomOf="@id/tvQuickScan">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

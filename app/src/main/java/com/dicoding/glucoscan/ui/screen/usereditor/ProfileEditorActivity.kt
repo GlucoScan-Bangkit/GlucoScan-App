@@ -46,7 +46,11 @@ class ProfileEditorActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             val name = binding.usernameInput.input.text.toString()
             val email = binding.emailInput.input.text.toString()
-            viewModel.changeData(name, email)
+            val telp = binding.telpInput.input.text.toString()
+            val age = binding.ageInput.input.text.toString().toIntOrNull()
+            val gender = binding.genderInput.input.text.toString().toBooleanStrictOrNull()
+
+            viewModel.changeData(name, email, telp, age, gender)
         }
     }
 

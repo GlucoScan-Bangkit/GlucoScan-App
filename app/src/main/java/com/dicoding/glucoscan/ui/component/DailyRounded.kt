@@ -32,7 +32,10 @@ class DailyRounded : View {
         get() = _data
         set(value) {
             _data = value
+            updateBackgroundColor()
+            updateTextColor()
             invalidateTextPaintAndMeasurements()
+            invalidate()
         }
 
     /**
@@ -71,7 +74,7 @@ class DailyRounded : View {
                 attrs, R.styleable.DailyRounded, defStyle, 0)
 
         _data = a.getString(
-                R.styleable.DailyRounded_data)
+                R.styleable.DailyRounded_data) ?: "0"
         _color = a.getColor(
                 R.styleable.DailyRounded_color,
                 color)
@@ -88,11 +91,27 @@ class DailyRounded : View {
             flags = Paint.ANTI_ALIAS_FLAG
             textAlign = Paint.Align.LEFT
         }
-
-        backgroundPaint.color = Color.LTGRAY
-
+        updateBackgroundColor()
         // Update TextPaint and text measurements from attributes
         invalidateTextPaintAndMeasurements()
+    }
+
+    private fun updateBackgroundColor() {
+        backgroundPaint.color = when (_data?.toIntOrNull()) {
+            in 1..40 -> context.getColor(R.color.green_300)
+            in 41..70 -> context.getColor(R.color.yellow_300)
+            in 71..Int.MAX_VALUE -> context.getColor(R.color.red_300)
+            else -> Color.LTGRAY
+        }
+    }
+
+    private fun updateTextColor(){
+        color = when (_data?.toIntOrNull()) {
+            in 1..40 -> context.getColor(R.color.green_900)
+            in 41..70 -> context.getColor(R.color.yellow_900)
+            in 71..Int.MAX_VALUE -> context.getColor(R.color.red_900)
+            else -> context.getColor(R.color.neutral_900)
+        }
     }
 
     private fun invalidateTextPaintAndMeasurements() {
@@ -100,7 +119,7 @@ class DailyRounded : View {
             it.textSize = dimension
             it.color = color
             textWidth = it.measureText(data)
-            textHeight = it.fontMetrics.bottom
+            textHeight = it.fontMetrics.descent - it.fontMetrics.ascent
         }
     }
 

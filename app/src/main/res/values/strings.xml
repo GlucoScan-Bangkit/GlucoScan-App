@@ -38,7 +38,7 @@
     //HOME
     <string name="home_title">Halo, Lastname</string>
     <string name="home_subtitle">Selamat datang!</string>
-    <string name="statistic_title">Statistik</string>
+    <string name="statistic_title">Statistik minggu ini</string>
 
     //SCAN
     <string name="camera_description">Pastikan kandungan nutrisi berada di dalam area kotak scan.</string>
@@ -58,7 +58,7 @@
     <string name="history_title">Riwayat</string>
     <string name="month">November</string>
     <string name="date">24</string>
-    <string name="sugar_intake">20 gr</string>
+    <string name="sugar_intake">20</string>
     <string name="day">Rab</string>
     <string name="scan_history">Aktivitas scan</string>
     <string name="scan_history_value">1 kali</string>
