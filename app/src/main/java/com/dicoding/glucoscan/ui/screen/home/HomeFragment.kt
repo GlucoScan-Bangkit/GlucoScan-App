@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
 import com.dicoding.glucoscan.data.Result
+import com.dicoding.glucoscan.data.response.UserData
 import com.dicoding.glucoscan.databinding.FragmentHomeBinding
 import com.dicoding.glucoscan.helper.DailyRoundedAdapter
 import com.dicoding.glucoscan.helper.ViewModelFactory
@@ -31,30 +32,19 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         homeViewModel =
             ViewModelProvider(this, ViewModelFactory.getInstance(requireActivity().application))[HomeViewModel::class.java]
-        homeViewModel.getDashboard()
-
         setupView()
         setupAction()
         return binding.root
     }
 
     private fun setupView(){
-        homeViewModel.user.observe(viewLifecycleOwner){ result ->
-            when (result){
-                is Result.Success -> {
-                    Glide.with(requireContext())
-                        .load(result.data.user?.profilePicture)
-                        .into(binding.ivProfile)
-                    binding.tvUsername.text = "Halo, ${result.data.user?.name}"
-                }
-                is Result.Loading -> {
-
-                }
-                is Result.Error -> {
-                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                }
-            }
+        arguments?.getParcelable<UserData>("user").let{
+            Glide.with(requireContext())
+                .load(it?.profilePicture)
+                .into(binding.ivProfile)
+            binding.tvUsername.text = "Halo, ${it?.name}"
         }
+
 
         binding.recyclerDailyRounded.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerDailyRounded.adapter = DailyRoundedAdapter(homeViewModel.getDailyRoundedData().take(7))

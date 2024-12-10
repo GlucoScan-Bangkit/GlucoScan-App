@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.data.EncryptedSharedPreference.deleteToken
 import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
+import com.dicoding.glucoscan.data.response.UserData
 import com.dicoding.glucoscan.databinding.FragmentSettingBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.screen.login.SignInActivity
@@ -19,11 +21,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
+    private lateinit var settingViewModel: SettingViewModel
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -31,10 +33,18 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val settingViewModel =
+        settingViewModel =
             ViewModelProvider(this, ViewModelFactory.getInstance(requireActivity().application))[SettingViewModel::class.java]
 
         binding = FragmentSettingBinding.inflate(inflater, container, false)
+
+        arguments?.getParcelable<UserData>("user")?.let {
+            Glide.with(this)
+                .load(it.profilePicture)
+                .into(binding.ivProfile)
+            binding.tvUsername.text = it.name
+            binding.tvEmail.text = it.email
+        }
 
         binding.boxEditProfile.icEdit.setImageResource(R.drawable.ic_profile_edit)
         binding.boxEditProfile.content.text = "Perbarui profil"

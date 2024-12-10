@@ -1,6 +1,8 @@
 package com.dicoding.glucoscan.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class DashboardResponse(
 
@@ -11,6 +13,7 @@ data class DashboardResponse(
 	val user: UserData? = null
 )
 
+@Parcelize
 data class UserData(
 
 	@field:SerializedName("profilePicture")
@@ -21,7 +24,7 @@ data class UserData(
 
 	@field:SerializedName("email")
 	val email: String? = null
-)
+) : Parcelable
 
 data class ChangePasswordResponse(
 	@field:SerializedName("message")

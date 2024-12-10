@@ -8,7 +8,11 @@
         android:id="@+id/navigation_home"
         android:name="com.dicoding.glucoscan.ui.screen.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="user"
+            app:argType="com.dicoding.glucoscan.data.response.UserData"/>
+    </fragment>
     <fragment
         android:id="@+id/navigation_setting"
         android:name="com.dicoding.glucoscan.ui.screen.setting.SettingFragment"

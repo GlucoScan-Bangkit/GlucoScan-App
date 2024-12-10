@@ -26,6 +26,8 @@ class SignUpViewModel(private val mApplication: Application, private val registe
     private val _registerResult = MutableLiveData<Result<RegisterResponse>>()
     val registerResult: LiveData<Result<RegisterResponse>> = _registerResult
 
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String> = _username
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email
@@ -34,6 +36,7 @@ class SignUpViewModel(private val mApplication: Application, private val registe
     val password : LiveData<String> = _password
 
     fun setDatatoSignUp(email: String, password: String){
+        _username.value = email.split("@")[0]
         _email.value = email
         _password.value = password
     }
@@ -48,7 +51,7 @@ class SignUpViewModel(private val mApplication: Application, private val registe
     fun signUp2(){
         viewModelScope.launch {
             _registerResult.value = Result.Loading
-            val result = registerRepository.register(email.value.toString(), email.value.toString(), password.value.toString())
+            val result = registerRepository.register(username.value.toString(), email.value.toString(), password.value.toString())
             _registerResult.value = result
         }
     }
