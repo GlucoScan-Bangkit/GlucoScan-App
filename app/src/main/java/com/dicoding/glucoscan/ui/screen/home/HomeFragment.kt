@@ -1,5 +1,6 @@
 package com.dicoding.glucoscan.ui.screen.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -50,6 +51,7 @@ class HomeFragment : Fragment() {
         binding.recyclerDailyRounded.adapter = DailyRoundedAdapter(homeViewModel.getDailyRoundedData().take(7))
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupAction(){
         binding.overlayView.setOnTouchListener { view, motionEvent -> true }
 

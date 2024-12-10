@@ -1,6 +1,6 @@
 package com.dicoding.glucoscan.ui.screen.history
 
-import androidx.fragment.app.viewModels
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.databinding.FragmentHistoryBinding
 import com.dicoding.glucoscan.helper.HistoryAdapter
 import com.dicoding.glucoscan.helper.RiwayatRoundedAdapter
 import com.dicoding.glucoscan.helper.ViewModelFactory
-import com.dicoding.glucoscan.helper.timeStamp
+import com.dicoding.glucoscan.helper.createTimestamp
 
 class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
@@ -33,7 +32,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setupView(){
-        binding.titleMonth.text = timeStamp("monthName")
+        binding.titleMonth.text = createTimestamp("monthName")
 
         val date = viewModel.getDate().take(7)
 
@@ -46,6 +45,7 @@ class HistoryFragment : Fragment() {
         binding.rvRiwayatActivity.adapter = HistoryAdapter(viewModel.getHistory(date[0]))
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupAction(){
         binding.overlayView.setOnTouchListener { view, motionEvent ->
             binding.overlayView.visibility = View.GONE

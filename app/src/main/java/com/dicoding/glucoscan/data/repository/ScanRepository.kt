@@ -22,7 +22,7 @@ class ScanRepository private constructor(
                     Result.Error(responseBody?.message ?: "Unknown error")
                 }
             } else {
-                val errorBody = parseError(response.errorBody()?.string())
+                val errorBody = parseError(response.message())
                 Result.Error(errorBody)
             }
         } catch (e: HttpException) {

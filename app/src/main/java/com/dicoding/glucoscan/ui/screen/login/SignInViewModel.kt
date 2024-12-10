@@ -50,6 +50,6 @@ class SignInViewModel(private val mApplication: Application, private val loginRe
     }
 
     companion object{
-        val TAG = SignInViewModel::class.java.simpleName
+        val TAG: String = SignInViewModel::class.java.simpleName
     }
 }

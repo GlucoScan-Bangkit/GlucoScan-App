@@ -2,7 +2,7 @@ package com.dicoding.glucoscan.ui.screen.history
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
-import com.dicoding.glucoscan.helper.timeStamp
+import com.dicoding.glucoscan.helper.createTimestamp
 
 class HistoryViewModel(private val mApplication: Application) : ViewModel() {
     fun getHistoryData(): List<String> {
@@ -10,7 +10,7 @@ class HistoryViewModel(private val mApplication: Application) : ViewModel() {
     }
 
     fun getDate(): List<String> {
-        val data = timeStamp("date").toInt()
+        val data = createTimestamp("date").toInt()
         val dates = mutableListOf<String>()
         for (i in 0..6) {
             dates.add((data - i).toString())

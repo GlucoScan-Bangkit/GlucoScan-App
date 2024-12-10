@@ -60,7 +60,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
 
     // Add the dependency for the Firebase Authentication library
     implementation("com.google.firebase:firebase-auth")

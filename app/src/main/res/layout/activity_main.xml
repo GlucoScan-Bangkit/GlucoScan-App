@@ -22,6 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_navigation"
-        android:name="androidx.navigation.fragment.NavHostFragment" />
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        tools:ignore="FragmentTagUsage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

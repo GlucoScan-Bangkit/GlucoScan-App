@@ -96,16 +96,23 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun startGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        launcherGallery.launch(
+            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+        )
     }
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-            val intent = Intent(this, ScanActivity::class.java)
-            intent.putExtra(EXTRA_CAMERAX_IMAGE, uri.toString())
-            startActivity(intent)
+            val mimeType = contentResolver.getType(uri)
+            if (mimeType == "image/jpeg" || mimeType == "image/png") {
+                val intent = Intent(this, ScanActivity::class.java)
+                intent.putExtra(EXTRA_CAMERAX_IMAGE, uri.toString())
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Invalid file type. Please select a JPEG or PNG image.", Toast.LENGTH_SHORT).show()
+            }
         } else {
             Log.d("Photo Picker", "No media selected")
         }

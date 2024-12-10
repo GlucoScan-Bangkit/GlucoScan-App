@@ -1,5 +1,6 @@
 package com.dicoding.glucoscan.ui.component
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.dicoding.glucoscan.R
 
+@SuppressLint("UseCompatLoadingForDrawables")
 class GoogleButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

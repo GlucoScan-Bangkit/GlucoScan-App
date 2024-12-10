@@ -57,6 +57,6 @@ class SignUpViewModel(private val mApplication: Application, private val registe
     }
 
     companion object{
-        val TAG = SignUpViewModel::class.java.simpleName
+        val TAG: String = SignUpViewModel::class.java.simpleName
     }
 }

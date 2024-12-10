@@ -16,7 +16,7 @@ private const val MAXIMAL_SIZE = 1000000
 private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
-fun timeStamp(type: String): String {
+fun createTimestamp(type: String): String {
     var format = "yyyyMMdd_HHmmss"
     when (type) {
         "date" -> format = "dd"
@@ -27,6 +27,13 @@ fun timeStamp(type: String): String {
     val date = Date()
     val dateFormat = SimpleDateFormat(format, Locale.getDefault())
     return dateFormat.format(date)
+}
+
+fun changeFormatTimestamp(inputTimestamp: String, format: String): String {
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    val date = inputFormat.parse(inputTimestamp)
+    val outputDateFormat = SimpleDateFormat(format, Locale.getDefault())
+    return outputDateFormat.format(date!!)
 }
 
 fun createCustomTempFile(context: Context): File {

@@ -23,8 +23,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerWaiting"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
         <ImageView
             android:id="@+id/ivWaiting"
             android:layout_width="match_parent"
@@ -106,7 +105,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerScanSuccess"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
         <ImageView
             android:id="@+id/ivSucces"
             android:layout_width="match_parent"

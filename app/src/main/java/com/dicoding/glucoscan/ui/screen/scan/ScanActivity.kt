@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivityScanBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
+import com.dicoding.glucoscan.helper.changeFormatTimestamp
 import com.dicoding.glucoscan.ui.MainActivity
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -39,20 +41,35 @@ class ScanActivity : AppCompatActivity() {
                     binding.progressBar.visibility = View.GONE
                     binding.containerWaiting.visibility = View.GONE
                     binding.containerScanFailed.visibility = View.VISIBLE
+                    Log.e("ScanActivity", "onCreate: ${result.error}")
                 }
                 Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 is Result.Success -> {
+                    val scanResponse = result.data
+                    val sugarContent = scanResponse.data?.sugarContent
+                    var scanDate = scanResponse.data?.scanDate
+
+                    if (scanDate != null) {
+                        scanDate = changeFormatTimestamp(scanDate, "HH:mm")
+                    }
+
+                    binding.scanSuccessResult.ivImage.setImageURI(image)
+                    binding.scanSuccessResult.tvSugar.text = "$sugarContent gr"
+                    binding.scanSuccessResult.tvTime.text = "$scanDate WIB"
+                    val spoonContent = if (!sugarContent.isNullOrEmpty()) {
+                        val sugarDouble = sugarContent.toDoubleOrNull() ?: 0.0
+                        (sugarDouble / 12).toString()
+                    } else {
+                        "0"
+                    }
+                    binding.scanSuccessResult.tvSpoon.text = "$spoonContent Spoon"
+
+
                     binding.progressBar.visibility = View.GONE
                     binding.containerWaiting.visibility = View.GONE
                     binding.containerScanSuccess.visibility = View.VISIBLE
-                    val scanResponse = result.data
-                    val sugarContent = scanResponse.data?.sugarContent
-                    val scanDate = scanResponse.data?.scanDate
-                    
-                    binding.scanSuccessResult.tvSugar.text = sugarContent
-                    binding.scanSuccessResult.tvTime.text = scanDate
                 }
             }
         }
