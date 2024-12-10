@@ -16,8 +16,7 @@ class HistoryAdapterTest {
 
     @Test
     fun getItemCount() {
-        val list = listOf("item1", "item2", "item3")
-        val adapter = HistoryAdapter(list)
-        assertEquals(3, adapter.itemCount)
+        val adapter = HistoryAdapter(emptyList())
+        assertEquals(0, adapter.itemCount)
     }
 }

@@ -62,7 +62,15 @@ class SettingFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        binding.btnCancelPopup.setOnClickListener {
+            binding.popUpInfoCard.visibility = View.GONE
+        }
+
         binding.btnLogout.setOnClickListener{
+            binding.popUpInfoCard.visibility = View.VISIBLE
+        }
+
+        binding.btnPopupLogout.setOnClickListener{
             auth.signOut()
             settingViewModel.logout(getToken(requireContext())!!)
             deleteToken(requireContext())

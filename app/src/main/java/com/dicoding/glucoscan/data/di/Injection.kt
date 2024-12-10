@@ -14,6 +14,7 @@ object Injection {
         return when(type){
             "home" -> UserRepository.getInstance(apiService) as T
             "scan" -> ScanRepository.getInstance(ApiConfig.getApiService2()) as T
+            "getHistory" -> ScanRepository.getInstance(ApiConfig.getApiService2()) as T
             "register" -> LoginRepository.getInstance(apiService) as T
             "login" -> LoginRepository.getInstance(apiService) as T
             "logout" -> LoginRepository.getInstance(apiService) as T

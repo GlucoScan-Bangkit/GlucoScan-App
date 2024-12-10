@@ -5,6 +5,7 @@ import com.dicoding.glucoscan.data.response.ChangeDataResponse
 import com.dicoding.glucoscan.data.response.ChangePasswordRequest
 import com.dicoding.glucoscan.data.response.ChangePasswordResponse
 import com.dicoding.glucoscan.data.response.DashboardResponse
+import com.dicoding.glucoscan.data.response.GetScanResponse
 import com.dicoding.glucoscan.data.response.LoginRequest
 import com.dicoding.glucoscan.data.response.LoginResponse
 import com.dicoding.glucoscan.data.response.LogoutResponse
@@ -22,6 +23,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 import java.io.File
 
 interface ApiService {
@@ -63,4 +65,10 @@ interface ApiService {
     suspend fun getDashboard(
         @Header("Authorization") token: String
     ) : Response<DashboardResponse>
+
+    @GET("get_history")
+    suspend fun getHistory(
+        @Header("Authorization") token: String,
+        @Query("date") date: String
+    ) : Response<GetScanResponse>
 }

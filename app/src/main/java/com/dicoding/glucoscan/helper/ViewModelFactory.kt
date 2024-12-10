@@ -48,7 +48,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
         } else if (modelClass.isAssignableFrom(ProfileEditorViewModel::class.java)) {
             return ProfileEditorViewModel(mApplication, Injection.provideRepository(mApplication, "changeData")) as T
         } else if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
-            return HistoryViewModel(mApplication) as T
+            return HistoryViewModel(mApplication, Injection.provideRepository(mApplication, "getHistory")) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

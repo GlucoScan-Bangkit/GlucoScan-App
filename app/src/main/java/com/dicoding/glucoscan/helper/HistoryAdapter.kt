@@ -4,18 +4,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.glucoscan.data.response.DataItem
 import com.dicoding.glucoscan.databinding.ItemRiwayatActivityBinding
 
-class HistoryAdapter(private val items: List<String>) :
+class HistoryAdapter(private val items: List<DataItem?>?) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     class ViewHolder(private val binding: ItemRiwayatActivityBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
+        fun bind(item: DataItem?) {
             Glide.with(binding.root.context)
                 .load(item)
                 .into(binding.ivImage)
-            binding.tvTime.text = "$item WIB"
-            binding.tvSugar.text = "$item gr"
-            binding.tvSpoon.text = "$item Sdm"
+            val time = changeFormatTimestamp(item?.timestamp!!, "HH:mm")
+            val spoonContent = if (!item.kandunganGula.isNullOrEmpty()) {
+                val sugarDouble = item.kandunganGula.toString().toDoubleOrNull() ?: 0.0
+                (sugarDouble / 12).toString()
+            } else {
+                "0"
+            }
+            binding.tvTime.text = "$time WIB"
+            binding.tvSugar.text = "${item.kandunganGula} gr"
+            binding.tvSpoon.text = "$spoonContent Sdm"
         }
     }
 
@@ -25,9 +33,9 @@ class HistoryAdapter(private val items: List<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
+        val item = items!![position]
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = items?.size ?: 0
 }

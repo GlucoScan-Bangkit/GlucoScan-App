@@ -27,7 +27,7 @@
         android:contentDescription="logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/google_logo"
+        android:src="@mipmap/ic_launcher"
         tools:src="@tools:sample/avatars"/>
 
     <TextView

@@ -2,9 +2,10 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.GlucoScan" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/blue_500</item>
         <item name="android:fontFamily">@font/inter</item>
+        <item name="android:statusBarColor">@color/white_background</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.GlucoScan" parent="Base.Theme.GlucoScan" />
