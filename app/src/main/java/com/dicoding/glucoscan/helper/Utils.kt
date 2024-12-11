@@ -16,10 +16,11 @@ private const val MAXIMAL_SIZE = 1000000
 private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
-fun createTimestamp(type: String): String {
+fun createTimestamp(type: String?): String {
     var format = "yyyyMMdd_HHmmss"
     when (type) {
         "date" -> format = "dd"
+        "dateSimpleName" -> format = "EEE"
         "month" -> format = "MM"
         "monthName" -> format = "MMMM"
         "year" -> format = "yyyy"

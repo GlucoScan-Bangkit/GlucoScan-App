@@ -19,6 +19,7 @@ import com.dicoding.glucoscan.data.response.UserData
 import com.dicoding.glucoscan.databinding.FragmentHomeBinding
 import com.dicoding.glucoscan.helper.DailyRoundedAdapter
 import com.dicoding.glucoscan.helper.ViewModelFactory
+import com.dicoding.glucoscan.helper.createTimestamp
 import com.dicoding.glucoscan.ui.screen.scan.CameraActivity
 
 class HomeFragment : Fragment() {
@@ -46,6 +47,9 @@ class HomeFragment : Fragment() {
             binding.tvUsername.text = "Halo, ${it?.name}"
         }
 
+        val date = createTimestamp("date")
+        val month = createTimestamp("monthName")
+        binding.titleDate.text = "${date.toInt() - 7}-$date $month"
 
         binding.recyclerDailyRounded.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerDailyRounded.adapter = DailyRoundedAdapter(homeViewModel.getDailyRoundedData().take(7))
