@@ -46,11 +46,10 @@ class HistoryFragment : Fragment() {
 
         binding.rvRiwayat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRiwayat.adapter = RiwayatRoundedAdapter(date){ selectedItem ->
-            val fullDate = "$monthYear-$selectedItem"
-            Log.e("HistoryFragment", "Selected date: $fullDate")
-            viewModel.getHistory(fullDate)
+            Log.e("HistoryFragment", "Selected date: $selectedItem")
+            viewModel.getHistory(selectedItem)
             try {
-                val result = changeFormatTimestamp(fullDate, "EEE", "yearMonthDate")
+                val result = changeFormatTimestamp(selectedItem, "EEE", "yearMonthDate")
                 binding.tvDaily.text = result
             } catch (e: Exception){
                 Log.e("HistoryFragment", e.message.toString())
@@ -68,7 +67,7 @@ class HistoryFragment : Fragment() {
                 is Result.Success -> {
                     binding.rvRiwayatActivity.adapter = HistoryAdapter(result.data.data)
                     Log.e("HistoryFragment", result.data.data.toString())
-                    binding.tvDailyScan.text = result.data.data?.size.toString()
+                    binding.tvDailyScan.text = "${result.data.data?.size.toString()} Kali"
                 }
                 is Result.Error -> {
                     //

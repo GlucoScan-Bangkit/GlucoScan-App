@@ -43,7 +43,7 @@ fun get7DateBehind(): List<String> {
     val dates = mutableListOf<String>()
     for (i in 0..6) {
         val localDateTime = now.minusSeconds(i * 86400L).atZone(zoneId).toLocalDateTime()
-        val formatter = DateTimeFormatter.ofPattern("dd")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedDate = localDateTime.format(formatter)
         dates.add(formattedDate)
     }

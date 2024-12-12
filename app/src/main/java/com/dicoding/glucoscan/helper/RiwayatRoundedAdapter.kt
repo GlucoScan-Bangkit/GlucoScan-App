@@ -19,7 +19,8 @@ class RiwayatRoundedAdapter(
 
     class ViewHolder(private val binding: ItemDailyRoundedBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String, isSelected: Boolean) {
-            binding.dailyRoundedView.data = item
+            val data = changeFormatTimestamp(item, "dd", "yearMonthDate")
+            binding.dailyRoundedView.data = data
             binding.dailyRoundedView.dimension = 28f
             if (isSelected) {
                 binding.dailyRoundedView.color = binding.root.context.getColor(R.color.white)
