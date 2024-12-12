@@ -16,13 +16,13 @@ class HistoryAdapter(private val items: List<DataItem?>?) :
                 .into(binding.ivImage)
             val time = changeFormatTimestamp(item?.timestamp!!, "HH:mm")
             val spoonContent = if (!item.kandunganGula.isNullOrEmpty()) {
-                val sugarDouble = item.kandunganGula.toString().toDoubleOrNull() ?: 0.0
+                val sugarDouble = item.kandunganGula[0].toString().toDoubleOrNull() ?: 0.0
                 (sugarDouble / 12).toString()
             } else {
                 "0"
             }
             binding.tvTime.text = "$time WIB"
-            binding.tvSugar.text = "${item.kandunganGula} gr"
+            binding.tvSugar.text = "${item.kandunganGula?.get(0)} gr"
             binding.tvSpoon.text = "$spoonContent Sdm"
         }
     }

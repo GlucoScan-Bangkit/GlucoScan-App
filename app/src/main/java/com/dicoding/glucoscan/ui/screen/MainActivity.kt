@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(application)
     }
     private val bundle = Bundle()
-    private var lastNav: Int = 2131296647
+    private var lastNav: Int = R.id.navigation_home
 
     override fun onResume() {
         super.onResume()
@@ -37,6 +37,24 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         viewModel.getDashboard()
+        viewModel.user.observe(this){ result ->
+            when (result) {
+                is Result.Success -> {
+                    result.data.user?.let {
+                        bundle.putParcelable("user", it)
+                        onNavigationItemSelected(lastNav)
+                    }
+                }
+
+                is Result.Error -> {
+                    //
+                }
+
+                Result.Loading -> {
+                    //
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

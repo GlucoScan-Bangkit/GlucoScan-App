@@ -17,7 +17,7 @@ data class GetScanResponse(
 data class DataItem(
 
 	@field:SerializedName("kandungan_gula")
-	val kandunganGula: List<Any?>? = null,
+	val kandunganGula: List<Double?>? = null,
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,

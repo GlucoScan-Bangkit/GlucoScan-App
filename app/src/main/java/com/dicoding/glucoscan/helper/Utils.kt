@@ -4,11 +4,16 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -30,8 +35,33 @@ fun createTimestamp(type: String?): String {
     return dateFormat.format(date)
 }
 
-fun changeFormatTimestamp(inputTimestamp: String, format: String): String {
-    val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+@RequiresApi(Build.VERSION_CODES.O)
+fun get7DateBehind(): List<String> {
+    val now = Instant.now()
+    val zoneId = ZoneId.of("Asia/Jakarta")
+
+    val dates = mutableListOf<String>()
+    for (i in 0..6) {
+        val localDateTime = now.minusSeconds(i * 86400L).atZone(zoneId).toLocalDateTime()
+        val formatter = DateTimeFormatter.ofPattern("dd")
+        val formattedDate = localDateTime.format(formatter)
+        dates.add(formattedDate)
+    }
+
+    return dates
+}
+
+fun changeFormatTimestamp(inputTimestamp: String, format: String, type: String? = null): String {
+    var pastFormat: String = "yyyy-MM-dd HH:mm:ss"
+    when(type){
+        "date" -> pastFormat = "dd"
+        "dateSimpleName" -> pastFormat = "EEE"
+        "month" -> pastFormat = "MM"
+        "monthName" -> pastFormat = "MMMM"
+        "year" -> pastFormat = "yyyy"
+        "yearMonthDate" -> pastFormat = "yyyy-MM-dd"
+    }
+    val inputFormat = SimpleDateFormat(pastFormat, Locale.getDefault())
     val date = inputFormat.parse(inputTimestamp)
     val outputDateFormat = SimpleDateFormat(format, Locale.getDefault())
     return outputDateFormat.format(date!!)

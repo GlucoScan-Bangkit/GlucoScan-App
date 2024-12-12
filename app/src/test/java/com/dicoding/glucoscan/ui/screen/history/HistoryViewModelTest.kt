@@ -1,5 +1,8 @@
 package com.dicoding.glucoscan.ui.screen.history
 
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
+import com.dicoding.glucoscan.data.repository.ScanRepository
+import com.dicoding.glucoscan.data.retrofit.ApiConfig
 import com.dicoding.glucoscan.helper.createTimestamp
 
 import org.junit.Test
