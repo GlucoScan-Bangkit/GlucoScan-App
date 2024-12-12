@@ -2,12 +2,14 @@ package com.dicoding.glucoscan.ui.screen.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,12 +22,14 @@ import com.dicoding.glucoscan.databinding.FragmentHomeBinding
 import com.dicoding.glucoscan.helper.DailyRoundedAdapter
 import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.helper.createTimestamp
+import com.dicoding.glucoscan.helper.get7DateBehind
 import com.dicoding.glucoscan.ui.screen.scan.CameraActivity
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +43,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupView(){
         arguments?.getParcelable<UserData>("user").let{
             Glide.with(requireContext())
@@ -48,8 +53,9 @@ class HomeFragment : Fragment() {
         }
 
         val date = createTimestamp("date")
+        val lastDate = get7DateBehind().lastIndex
         val month = createTimestamp("monthName")
-        binding.titleDate.text = "${date.toInt() - 7}-$date $month"
+        binding.titleDate.text = "$lastDate-$date $month"
 
         binding.recyclerDailyRounded.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerDailyRounded.adapter = DailyRoundedAdapter(homeViewModel.getDailyRoundedData().take(7))

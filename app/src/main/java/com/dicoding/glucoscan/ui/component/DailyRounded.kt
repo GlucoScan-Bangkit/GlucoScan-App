@@ -20,6 +20,7 @@ class DailyRounded : View {
     private var _color: Int = Color.RED
     private var _customBackgroundColor: Int = Color.LTGRAY
     private var _dimension: Float = 0f
+    private var _type: String? = null
 
     private lateinit var textPaint: TextPaint
     private var textWidth: Float = 0f
@@ -37,6 +38,13 @@ class DailyRounded : View {
             updateTextColor()
             invalidateTextPaintAndMeasurements()
             invalidate()
+        }
+
+    var type: String?
+        get() = _type
+        set(value) {
+            _type = value
+            invalidateTextPaintAndMeasurements()
         }
 
     /**
@@ -85,6 +93,8 @@ class DailyRounded : View {
 
         _data = a.getString(
                 R.styleable.DailyRounded_data) ?: "0"
+        _type = a.getString(
+                R.styleable.DailyRounded_type)
         _color = a.getColor(
                 R.styleable.DailyRounded_color,
                 color)
@@ -164,7 +174,10 @@ class DailyRounded : View {
         // Draw the text inside the circle, centered
         data?.let {
             canvas.drawText(
-                it,
+                when(type){
+                    "sugar" -> "$it gr"
+                    else -> it
+                },
                 centerX - textWidth / 2f,  // Center horizontally
                 centerY + textHeight / 2f, // Center vertically (adjust for baseline)
                 textPaint

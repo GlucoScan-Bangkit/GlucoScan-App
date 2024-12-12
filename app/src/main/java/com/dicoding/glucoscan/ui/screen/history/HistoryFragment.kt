@@ -57,7 +57,7 @@ class HistoryFragment : Fragment() {
         }
 
         binding.rvRiwayatActivity.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        viewModel.getHistory("$monthYear-${date.first()}")
+        viewModel.getHistory(date.first())
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -66,7 +66,13 @@ class HistoryFragment : Fragment() {
             when(result){
                 is Result.Success -> {
                     binding.rvRiwayatActivity.adapter = HistoryAdapter(result.data.data)
-                    Log.e("HistoryFragment", result.data.data.toString())
+                    var totalSugar:Int = 0
+                    for (i in 0..(result.data.data?.size ?: 0) - 1){
+                        totalSugar += result.data.data?.get(i)?.kandunganGula?.first()?.toInt()
+                            ?: 0
+                        Log.e("HistoryFragment", result.data.data?.get(i)?.kandunganGula?.first().toString())
+                    }
+                    binding.drDaily.data = totalSugar.toString()
                     binding.tvDailyScan.text = "${result.data.data?.size.toString()} Kali"
                 }
                 is Result.Error -> {

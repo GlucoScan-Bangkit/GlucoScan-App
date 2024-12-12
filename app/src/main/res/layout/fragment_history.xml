@@ -99,6 +99,7 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     app:data="@string/sugar_intake"
+                    app:type="sugar"
                     app:dimension="10sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
