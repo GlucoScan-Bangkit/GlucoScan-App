@@ -48,11 +48,13 @@
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/gallery"
                 app:srcCompat="@drawable/ic_gallery"/>
             <ImageView
                 android:id="@+id/captureImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="@string/capture_image"
                 android:padding="16dp"
                 android:background="@color/blue_700"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -64,6 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/flash_light"
                 app:srcCompat="@drawable/ic_flashlight"/>
         </LinearLayout>
     </LinearLayout>

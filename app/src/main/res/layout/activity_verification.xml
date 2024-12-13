@@ -58,7 +58,8 @@
             android:layout_marginEnd="8dp"
             android:maxLength="1"
             android:textColor="@color/blue_500"
-            android:background="@drawable/custom_edittext_border"/>
+            android:background="@drawable/custom_edittext_border"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/otp2"
@@ -70,7 +71,8 @@
             android:maxLength="1"
             android:layout_marginStart="8dp"
             android:textColor="@color/blue_500"
-            android:background="@drawable/custom_edittext_border"/>
+            android:background="@drawable/custom_edittext_border"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/otp3"
@@ -82,7 +84,8 @@
             android:maxLength="1"
             android:layout_marginStart="8dp"
             android:textColor="@color/blue_500"
-            android:background="@drawable/custom_edittext_border"/>
+            android:background="@drawable/custom_edittext_border"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/otp4"
@@ -94,7 +97,8 @@
             android:maxLength="1"
             android:layout_marginStart="8dp"
             android:textColor="@color/blue_500"
-            android:background="@drawable/custom_edittext_border"/>
+            android:background="@drawable/custom_edittext_border"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/otp5"
@@ -106,7 +110,8 @@
             android:maxLength="1"
             android:layout_marginStart="8dp"
             android:textColor="@color/blue_500"
-            android:background="@drawable/custom_edittext_border"/>
+            android:background="@drawable/custom_edittext_border"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/otp6"
@@ -117,7 +122,8 @@
             android:maxLength="1"
             android:layout_marginStart="8dp"
             android:textColor="@color/blue_500"
-            android:background="@drawable/custom_edittext_border"/>
+            android:background="@drawable/custom_edittext_border"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 

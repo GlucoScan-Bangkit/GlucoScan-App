@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GlucoscanTesting</string>
+    <string name="app_name">Glucoscan</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -171,5 +171,18 @@
         • Waspada: 51 - 100 gram\n
         • Bahaya: >= 101 gram
     </string>
+    <string name="gallery">Gallery</string>
+    <string name="capture_image">capture image</string>
+    <string name="flash_light">flash light</string>
+    <string name="icon_back">icon back</string>
+    <string name="profile">Profile</string>
+    <string name="waiting">waiting</string>
+    <string name="askingscan">askingscan</string>
+    <string name="success_image">success image</string>
+    <string name="icon_next">icon next</string>
+    <string name="info">info</string>
+    <string name="popup">popup</string>
+    <string name="informasi">Informasi</string>
+    <string name="jam">Jam</string>
 
 </resources>

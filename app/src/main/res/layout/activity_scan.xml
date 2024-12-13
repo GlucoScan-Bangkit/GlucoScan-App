@@ -28,6 +28,7 @@
             android:id="@+id/ivWaiting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/waiting"
             android:src="@drawable/v_meditate"
             android:padding="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,6 +55,7 @@
             android:id="@+id/ivAsking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/askingscan"
             android:src="@drawable/v_asking"
             android:padding="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -113,6 +115,7 @@
             android:id="@+id/ivSucces"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/success_image"
             android:src="@drawable/v_success"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView

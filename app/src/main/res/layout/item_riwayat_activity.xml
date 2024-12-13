@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:text="Jam"
+                android:text="@string/jam"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@id/tvTime"
                 app:layout_constraintBottom_toTopOf="@id/tvTime"

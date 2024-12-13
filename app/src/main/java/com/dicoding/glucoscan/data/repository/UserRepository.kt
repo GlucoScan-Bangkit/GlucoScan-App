@@ -9,7 +9,9 @@ import com.dicoding.glucoscan.data.response.ChangePasswordRequest
 import com.dicoding.glucoscan.data.response.ChangePasswordResponse
 import com.dicoding.glucoscan.data.response.DashboardResponse
 import com.dicoding.glucoscan.data.retrofit.ApiService
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.http.Multipart
 import java.io.File
 
@@ -56,7 +58,14 @@ class UserRepository(
 
     suspend fun changeData(token: String, name: String, email: String, no_phone: String, age: Int?, gender: Boolean?, photo: MultipartBody.Part?) : Result<ChangeDataResponse> {
         return try {
-            val response = apiService.changeData("Bearer $token", ChangeData(name, email, no_phone, age, gender), photo)
+            val genderInt = if (gender == true) 1 else if (gender == false) 0 else null
+            val namePart = name.toRequestBody("text/plain".toMediaTypeOrNull())
+            val emailPart = email.toRequestBody("text/plain".toMediaTypeOrNull())
+            val noPhonePart = no_phone.toRequestBody("text/plain".toMediaTypeOrNull())
+            val agePart = age?.toString()?.toRequestBody("text/plain".toMediaTypeOrNull())
+            val genderPart = genderInt.toString()?.toRequestBody("text/plain".toMediaTypeOrNull())
+
+            val response = apiService.changeData("Bearer $token", namePart, emailPart, noPhonePart, agePart, genderPart, photo)
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody?.message == "Data berhasil diperbarui") {

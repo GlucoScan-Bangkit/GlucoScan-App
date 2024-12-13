@@ -116,6 +116,7 @@
                     android:id="@+id/ivPopup"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/popup"
                     android:src="@drawable/ic_logout_24"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>

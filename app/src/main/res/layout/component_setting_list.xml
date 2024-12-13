@@ -28,6 +28,7 @@
         app:layout_constraintBottom_toBottomOf="@id/icEdit"/>
 
     <ImageView
+        android:contentDescription="@string/icon_next"
         android:id="@+id/next"
         android:layout_width="56dp"
         android:layout_height="56dp"

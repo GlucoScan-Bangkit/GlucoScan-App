@@ -13,6 +13,7 @@ import com.dicoding.glucoscan.data.response.RegisterRequest
 import com.dicoding.glucoscan.data.response.RegisterResponse
 import com.dicoding.glucoscan.data.response.ScanResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -56,10 +57,14 @@ interface ApiService {
     ) : Response<ChangePasswordResponse>
 
     @Multipart
-    @PATCH("dashboard/gantiData")
+    @PATCH("dashboard/changeData")
     suspend fun changeData(
         @Header("Authorization") token: String,
-        @Body request: ChangeData,
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("no_hp") noHp: RequestBody?,
+        @Part("age") age: RequestBody?,
+        @Part("gender") gender: RequestBody?,
         @Part pictureProfile: MultipartBody.Part? = null
     ) : Response<ChangeDataResponse>
 

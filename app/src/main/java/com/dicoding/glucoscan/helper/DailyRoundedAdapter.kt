@@ -25,8 +25,9 @@ class DailyRoundedAdapter(private val items: List<List<String>>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.dailyRounded
-        holder.dailyRounded.data = items[position].first()
-        holder.day.text = items[position].last()
+        holder.dailyRounded.data = items[position].last()
+        val newDate = changeFormatTimestamp(items[position].first(), "EEE", "yearMonthDate")
+        holder.day.text = newDate
         holder.dailyRounded.dimension = 28f
     }
 

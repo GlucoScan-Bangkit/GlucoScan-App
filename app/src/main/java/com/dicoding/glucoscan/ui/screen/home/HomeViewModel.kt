@@ -36,9 +36,11 @@ class HomeViewModel(private val mApplication: Application, private val repositor
         var fullList = mutableListOf<List<String>>()
 
         for (i in list.indices){
-            val dataStartIndex = i * 2
-            if (dataStartIndex < data.size) {
-                val dailyData = listOf(list[i]) + data.subList(dataStartIndex, minOf(dataStartIndex + 2, data.size))
+            if (i < data.size) {
+                val dailyData = listOf(list[i]) + data.subList(
+                    i,
+                    minOf(i + 2, data.size)
+                )
                 fullList.add(dailyData)
             }
         }
