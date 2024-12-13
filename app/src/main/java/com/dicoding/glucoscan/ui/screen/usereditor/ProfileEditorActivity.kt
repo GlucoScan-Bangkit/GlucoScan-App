@@ -23,6 +23,7 @@ class ProfileEditorActivity : AppCompatActivity() {
     private val viewModel: ProfileEditorViewModel by viewModels {
         ViewModelFactory.getInstance(application)
     }
+    private var uri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileEditorBinding.inflate(layoutInflater)
@@ -125,7 +126,7 @@ class ProfileEditorActivity : AppCompatActivity() {
             val age = binding.ageInput.input.text.toString().toIntOrNull()
             Log.d("ProfileEditorActivity", "name: $name, email: $email, telp: $telp, age: $age, gender: $gender")
 
-            viewModel.changeData(name, email, telp, age, gender)
+            viewModel.changeData(name, email, telp, age, gender, uri)
         }
     }
 
@@ -137,7 +138,13 @@ class ProfileEditorActivity : AppCompatActivity() {
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-            binding.ivProfile.setImageURI(uri)
+            val mimeType = contentResolver.getType(uri)
+            if (mimeType == "image/jpeg" || mimeType == "image/png") {
+                binding.ivProfile.setImageURI(uri)
+                this.uri = uri
+            } else {
+                Toast.makeText(this, "Invalid file type. Please select a JPEG or PNG image.", Toast.LENGTH_SHORT).show()
+            }
         } else {
             Log.d("Photo Picker", "No media selected")
         }

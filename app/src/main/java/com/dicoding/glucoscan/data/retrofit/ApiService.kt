@@ -55,10 +55,12 @@ interface ApiService {
         @Body request: ChangePasswordRequest
     ) : Response<ChangePasswordResponse>
 
+    @Multipart
     @PATCH("dashboard/gantiData")
     suspend fun changeData(
         @Header("Authorization") token: String,
-        @Body request: ChangeData
+        @Body request: ChangeData,
+        @Part pictureProfile: MultipartBody.Part? = null
     ) : Response<ChangeDataResponse>
 
     @GET("dashboard")

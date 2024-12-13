@@ -9,6 +9,9 @@ import com.dicoding.glucoscan.data.response.ChangePasswordRequest
 import com.dicoding.glucoscan.data.response.ChangePasswordResponse
 import com.dicoding.glucoscan.data.response.DashboardResponse
 import com.dicoding.glucoscan.data.retrofit.ApiService
+import okhttp3.MultipartBody
+import retrofit2.http.Multipart
+import java.io.File
 
 class UserRepository(
     private val apiService: ApiService
@@ -51,9 +54,9 @@ class UserRepository(
         }
     }
 
-    suspend fun changeData(token: String, name: String, email: String, no_phone: String, age: Int?, gender: Boolean?) : Result<ChangeDataResponse> {
+    suspend fun changeData(token: String, name: String, email: String, no_phone: String, age: Int?, gender: Boolean?, photo: MultipartBody.Part?) : Result<ChangeDataResponse> {
         return try {
-            val response = apiService.changeData("Bearer $token", ChangeData(name, email, no_phone, age, gender))
+            val response = apiService.changeData("Bearer $token", ChangeData(name, email, no_phone, age, gender), photo)
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody?.message == "Data berhasil diperbarui") {

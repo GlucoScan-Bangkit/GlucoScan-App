@@ -51,7 +51,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://34.101.132.170:5000")
+                .baseUrl("https://flask-app-248049662908.asia-southeast2.run.app:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
