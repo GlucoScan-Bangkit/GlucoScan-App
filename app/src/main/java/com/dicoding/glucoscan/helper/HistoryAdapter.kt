@@ -19,8 +19,9 @@ class HistoryAdapter(private val items: List<DataItem?>?) :
                 .load(item)
                 .into(binding.ivImage)
             val time = changeFormatTimestamp(item?.timestamp!!, "HH:mm")
+            var sugarDouble: Double = 0.0
             val spoonContent = if (!item.kandunganGula.isNullOrEmpty()) {
-                val sugarDouble = item.kandunganGula[0].toString().toDoubleOrNull() ?: 0.0
+                sugarDouble = item.kandunganGula[0].toString().toDoubleOrNull() ?: 0.0
                 (sugarDouble / 12)
             } else {
                 0.0
@@ -28,7 +29,7 @@ class HistoryAdapter(private val items: List<DataItem?>?) :
             val formatted = DecimalFormat("#.##")
             val spoonContentFormatted = formatted.format(spoonContent)
             binding.tvTime.text = "$time WIB"
-            binding.tvSugar.text = "${item.kandunganGula?.get(0)} gr"
+            binding.tvSugar.text = "$sugarDouble gr"
             binding.tvSpoon.text = "$spoonContentFormatted Sdm"
         }
     }
@@ -38,6 +39,7 @@ class HistoryAdapter(private val items: List<DataItem?>?) :
         return ViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items!![position]
         holder.bind(item)

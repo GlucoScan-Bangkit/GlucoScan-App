@@ -31,13 +31,21 @@
             android:text="Profile"/>
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/titlePage"
+        app:layout_constraintBottom_toBottomOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivProfile"
         android:layout_width="72dp"
         android:layout_height="72dp"
         app:shapeAppearanceOverlay="@style/CircularImage"
         android:src="@drawable/default_profile"
-        app:layout_constraintTop_toBottomOf="@id/titlePage"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
@@ -78,19 +86,54 @@
         layout="@layout/component_input_field"
         app:layout_constraintTop_toBottomOf="@id/telpInput"/>
 
-    <include
-        android:id="@+id/genderInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/component_input_field"
-        app:layout_constraintTop_toBottomOf="@id/ageInput"/>
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/ageInput">
+
+            <RadioButton
+                android:id="@+id/radioButtonMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.Button"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/radio_button_selector"
+                android:textColor="@color/blue_500"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:text="Pria"
+                android:checked="false"
+                android:button="@null"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.Button"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/radio_button_selector"
+                android:textColor="@color/blue_500"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:text="Wanita"
+                android:checked="false"
+                android:button="@null"/>
+        </RadioGroup>
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Simpan profile"
-        app:layout_constraintTop_toBottomOf="@id/genderInput"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupGender"
         app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

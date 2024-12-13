@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Rect
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
@@ -173,13 +174,21 @@ class DailyRounded : View {
 
         // Draw the text inside the circle, centered
         data?.let {
+            val text = when(type){
+                "sugar" -> "$it gr"
+                else -> it
+            }
+
+            val textBound = Rect()
+            textPaint.getTextBounds(text, 0, text.length, textBound)
+
+            val textX = centerX - textBound.width() / 2f
+            val textY = centerY + textBound.height() / 2f - textBound.bottom
+
             canvas.drawText(
-                when(type){
-                    "sugar" -> "$it gr"
-                    else -> it
-                },
-                centerX - textWidth / 2f,  // Center horizontally
-                centerY + textHeight / 2f, // Center vertically (adjust for baseline)
+                text,
+                textX,
+                textY,
                 textPaint
             )
         }

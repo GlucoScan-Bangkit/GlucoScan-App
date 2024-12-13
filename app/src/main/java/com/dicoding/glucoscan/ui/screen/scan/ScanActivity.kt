@@ -16,6 +16,7 @@ import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.helper.changeFormatTimestamp
 import com.dicoding.glucoscan.ui.MainActivity
 import com.google.android.material.textfield.TextInputLayout
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -64,7 +65,9 @@ class ScanActivity : AppCompatActivity() {
                     } else {
                         "0"
                     }
-                    binding.scanSuccessResult.tvSpoon.text = "$spoonContent Spoon"
+                    val formatted = DecimalFormat("#.##")
+                    val spoonContentFormatted = formatted.format(spoonContent.toDouble())
+                    binding.scanSuccessResult.tvSpoon.text = "$spoonContentFormatted Spoon"
 
 
                     binding.progressBar.visibility = View.GONE

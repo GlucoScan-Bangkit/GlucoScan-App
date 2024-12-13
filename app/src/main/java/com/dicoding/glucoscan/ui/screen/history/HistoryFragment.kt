@@ -68,9 +68,14 @@ class HistoryFragment : Fragment() {
                     binding.rvRiwayatActivity.adapter = HistoryAdapter(result.data.data)
                     var totalSugar:Int = 0
                     for (i in 0..(result.data.data?.size ?: 0) - 1){
-                        totalSugar += result.data.data?.get(i)?.kandunganGula?.first()?.toInt()
-                            ?: 0
-                        Log.e("HistoryFragment", result.data.data?.get(i)?.kandunganGula?.first().toString())
+                        val data = result.data.data?.get(i)
+                        if (data != null) {
+                            val sugarContent = data.kandunganGula?.firstOrNull()?.toInt() ?: 0
+                            totalSugar += sugarContent
+                            Log.e("HistoryFragment", "Sugar content: $sugarContent")
+                        } else {
+                            Log.e("HistoryFragment", "Data element at index $i is null")
+                        }
                     }
                     binding.drDaily.data = totalSugar.toString()
                     binding.tvDailyScan.text = "${result.data.data?.size.toString()} Kali"

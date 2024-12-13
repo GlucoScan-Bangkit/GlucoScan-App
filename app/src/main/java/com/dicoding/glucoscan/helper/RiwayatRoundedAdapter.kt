@@ -27,7 +27,7 @@ class RiwayatRoundedAdapter(
                 binding.dailyRoundedView.customBackgroundColor = binding.root.context.getColor(R.color.blue_500)
             } else {
                 binding.dailyRoundedView.color = binding.root.context.getColor(R.color.neutral_900)
-                binding.dailyRoundedView.customBackgroundColor = binding.root.context.getColor(R.color.gray_400)
+                binding.dailyRoundedView.customBackgroundColor = binding.root.context.getColor(R.color.neutral_300)
             }
         }
     }

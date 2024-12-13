@@ -38,18 +38,22 @@ class SettingFragment : Fragment() {
 
         binding = FragmentSettingBinding.inflate(inflater, container, false)
 
+        val bundle = Bundle()
+
         arguments?.getParcelable<UserData>("user")?.let {
             Glide.with(this)
                 .load(it.profilePicture)
                 .into(binding.ivProfile)
             binding.tvUsername.text = it.name
             binding.tvEmail.text = it.email
+            bundle.putParcelable("user", it)
         }
 
         binding.boxEditProfile.icEdit.setImageResource(R.drawable.ic_profile_edit)
         binding.boxEditProfile.content.text = "Perbarui profil"
         binding.boxEditProfile.root.setOnClickListener {
             val intent = Intent(requireContext(), ProfileEditorActivity::class.java)
+            intent.putExtras(bundle)
             startActivity(intent)
         }
 

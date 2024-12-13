@@ -75,27 +75,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scan_failed_subtitle"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/scanFailedTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/cancel_button"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btnTryAgain"
             app:layout_constraintTop_toBottomOf="@id/scanFailedSubtitle"
             app:layout_constraintBottom_toBottomOf="parent"/>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTryAgain"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/try_again_button"
             android:layout_margin="16dp"
+            style="@style/Widget.Material3.Button"
             app:layout_constraintStart_toEndOf="@id/btnCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scanFailedSubtitle"

@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.data.Result
+import com.dicoding.glucoscan.data.response.UserData
 import com.dicoding.glucoscan.databinding.ActivityPasswordEditorBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 

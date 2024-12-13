@@ -14,6 +14,7 @@
         app:color="@color/neutral_700"
         app:dimension="10sp"
         app:data="0"
+        app:type="sugar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

@@ -1,5 +1,6 @@
 package com.dicoding.glucoscan.data.repository
 
+import android.util.Log
 import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
 import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.data.response.ChangeData
@@ -17,7 +18,6 @@ class UserRepository(
             val response = apiService.getDashboard("Bearer $token")
             if (response.isSuccessful){
                 val responseBody = response.body()
-
                 if (responseBody?.message == "Berhasil mengambil data dashboard"){
                     Result.Success(responseBody)
                 } else {
