@@ -3,9 +3,16 @@ package com.dicoding.glucoscan.ui.screen.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
+import com.dicoding.glucoscan.data.EncryptedSharedPreference.saveToken
+import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivitySignInBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 import com.dicoding.glucoscan.ui.MainActivity
@@ -27,14 +34,51 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
 
         auth = Firebase.auth
 
-//        check if input is empty
+        setupView()
+        setupButton()
+    }
+
+    private fun setupView(){
+        signInViewModel.loginResult.observe(this){ result ->
+            when(result){
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    val user = result.data.user
+                    saveToken(
+                        token = user?.token.toString(),
+                        context = this
+                    )
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun setupButton(){
+
+//        set inputBox
+        binding.emailInput.title.text = getString(R.string.email)
+        binding.emailInput.input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        binding.passwordInput.title.text = getString(R.string.password)
+        binding.passwordInput.input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        //        check if input is empty
         binding.btnEmail.isEnabled = false
-        binding.tietEmail.addTextChangedListener(this)
-        binding.tietPassword.addTextChangedListener(this)
+        binding.emailInput.input.addTextChangedListener(this)
+        binding.passwordInput.input.addTextChangedListener(this)
 
         binding.btnEmail.setOnClickListener{
-            signInViewModel.setEmailPassword(binding.tietEmail.text.toString(), binding.tietPassword.text.toString())
-            signInViewModel.signIn()
+            signInViewModel.setEmailPassword(binding.emailInput.input.text.toString(), binding.passwordInput.input.text.toString())
+            signInViewModel.signIn2()
         }
 
         binding.btnSignup.setOnClickListener{
@@ -46,7 +90,7 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if (currentUser != null){
+        if (currentUser != null || getToken(this) != null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -58,7 +102,7 @@ class SignInActivity : AppCompatActivity(), TextWatcher {
     }
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        binding.btnEmail.isEnabled = !binding.tietEmail.text.isNullOrEmpty() && !binding.tietPassword.text.isNullOrEmpty()
+        binding.btnEmail.isEnabled = !binding.emailInput.input.text.isNullOrEmpty() && !binding.passwordInput.input.text.isNullOrEmpty()
     }
 
     override fun afterTextChanged(p0: Editable?) {

@@ -2,10 +2,14 @@ package com.dicoding.glucoscan.ui.screen.login
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.glucoscan.R
+import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.databinding.ActivitySignUpBinding
 import com.dicoding.glucoscan.helper.ViewModelFactory
 
@@ -19,16 +23,49 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupView()
+        setupButton()
+    }
+
+    private fun setupView(){
+        signUpViewModel.registerResult.observe(this){ result ->
+            when(result){
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+                Result.Loading -> binding.progressBar.visibility = View.VISIBLE
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, result.data.message, Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+        }
+    }
+
+    private fun setupButton(){
+//        set inputBox
+        binding.emailInput.title.text = getString(R.string.email)
+        binding.emailInput.input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+
+        binding.passwordInput.title.text = getString(R.string.password)
+        binding.passwordInput.input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        binding.confirmationPasswordInput.title.text = getString(R.string.confirm_password)
+        binding.confirmationPasswordInput.input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+//        setButton
         binding.btnEmail.isEnabled = false
-        binding.tietEmail.addTextChangedListener(this)
-        binding.tietPassword.addTextChangedListener(this)
-        binding.tietPasswordConfirmation.addTextChangedListener(this)
+        binding.emailInput.input.addTextChangedListener(this)
+        binding.passwordInput.input.addTextChangedListener(this)
+        binding.confirmationPasswordInput.input.addTextChangedListener(this)
 
         binding.btnEmail.setOnClickListener {
-            signUpViewModel.setDatatoSignUp(binding.tietEmail.text.toString(), binding.tietPassword.text.toString())
+            signUpViewModel.setDatatoSignUp(binding.emailInput.input.text.toString(), binding.passwordInput.input.text.toString())
 //            val intent = Intent(this, VerificationActivity::class.java)
 //            startActivity(intent)
-            signUpViewModel.signUp()
+            signUpViewModel.signUp2()
         }
         binding.btnSignin.setOnClickListener {
             finish()
@@ -45,28 +82,28 @@ class SignUpActivity : AppCompatActivity(), TextWatcher {
 
     override fun afterTextChanged(p0: Editable?) {
         when(p0){
-            binding.tietEmail.editableText -> {
-                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(binding.tietEmail.text.toString()).matches()){
-                    binding.tietEmail.error = getString(R.string.email_tidak_valid)
+            binding.emailInput.input.editableText -> {
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(binding.emailInput.input.text.toString()).matches()){
+                    binding.emailInput.input.error = getString(R.string.email_invalid)
                 }
             }
-            binding.tietPassword.editableText -> {
-                if (binding.tietPassword.text.toString().length < 8){
-                    binding.tietPassword.error = getString(R.string.password_minimal_8_karakter)
+            binding.passwordInput.input.editableText -> {
+                if (binding.passwordInput.input.text.toString().length < 8){
+                    binding.passwordInput.input.error = getString(R.string.password_invalid)
                 }
             }
-            binding.tietPasswordConfirmation.editableText -> {
-                if (binding.tietPassword.text.toString() != binding.tietPasswordConfirmation.text.toString()){
-                    binding.tietPasswordConfirmation.error = getString(R.string.password_tidak_sama)
+            binding.confirmationPasswordInput.input.editableText -> {
+                if (binding.passwordInput.input.text.toString() != binding.confirmationPasswordInput.input.text.toString()){
+                    binding.confirmationPasswordInput.input.error = getString(R.string.wrong_password_confirmation)
                 }
             }
         }
     }
 
     private fun validateForm(): Boolean {
-        val email = binding.tietEmail.text.toString()
-        val password = binding.tietPassword.text.toString()
-        val passwordConfirmation = binding.tietPasswordConfirmation.text.toString()
+        val email = binding.emailInput.input.text.toString()
+        val password = binding.passwordInput.input.text.toString()
+        val passwordConfirmation = binding.confirmationPasswordInput.input.text.toString()
         return email.isNotEmpty() && password.isNotEmpty() && passwordConfirmation.isNotEmpty() && password == passwordConfirmation && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length >= 8
     }
 }

@@ -3,27 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@color/white_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.screen.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Halo,"
+            android:text="@string/home_title"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textSize="24sp"/>
-
+            app:layout_constraintStart_toStartOf="parent"/>
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat datang!"
+            android:text="@string/home_subtitle"
             app:layout_constraintTop_toBottomOf="@id/tvUsername"
             app:layout_constraintStart_toStartOf="@id/tvUsername"/>
 
@@ -32,107 +34,205 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="centerCrop"
+            android:layout_marginHorizontal="16dp"
             app:shapeAppearanceOverlay="@style/CircularImage"
-            tools:src="@tools:sample/avatars"
+            android:src="@drawable/default_profile"
             app:layout_constraintTop_toTopOf="@id/tvUsername"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <LinearLayout
-            android:id="@+id/llRekomendasi"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/llRekomendasiCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="32dp"
-            android:padding="16dp"
-            android:background="@drawable/custom_edittext_border"
+            android:layout_margin="16dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/blue_100"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/tvWelcome">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:text="Rekomendasi asupan gula harian"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_info_outline_24"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:text="Rekomendasi asupan gula harian"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/info"
+                    android:src="@drawable/ic_info_outline_24"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/titleStatistik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/statistik"
+            android:text="@string/statistic_title"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/llRekomendasi"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toBottomOf="@id/llRekomendasiCard"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clStatistik"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/clStatistikCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:paddingVertical="8dp"
-            android:background="@drawable/custom_edittext_border"
+            android:layout_margin="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/titleStatistik">
-            <TextView
-                android:id="@+id/titleDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20-26 Nov"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-            <TextView
-                android:id="@+id/tvLihatDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lihat detail"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerDailyRounded"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clStatistik"
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:layout_marginTop="32dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/titleDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <LinearLayout
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+                <TextView
+                    android:id="@+id/titleDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20-26 Nov"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerDailyRounded"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/titleDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvQuickScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Quick scan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clStatistikCard"/>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_marginTop="32dp"
-            android:orientation="vertical"
-            android:background="@drawable/custom_edittext_border"
-            app:layout_constraintTop_toBottomOf="@id/clStatistik">
-            <TextView
+            android:layout_margin="16dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/tvQuickScan">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="Jangan lupa scan minuman Anda hari ini! Cara sederhana untuk memantau asupan gula harian anda"/>
+                android:padding="32dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/quick_scan_subtitle"/>
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_scan_24"
-                android:layout_gravity="center"
-                app:tint="@color/blue"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/blue"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:text="Scan sekarang"/>
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivScan"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/scan_now"
+                    android:src="@drawable/ic_scan_24"
+                    android:layout_gravity="center"
+                    app:tint="@color/blue_500"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_500"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:text="@string/scan_now"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
+        <View
+            android:id="@+id/overlayView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="16dp"
+            android:background="@color/black_background"
+            android:alpha="0.5"
+            android:visibility="gone"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/popUpInfoCard"
+            android:layout_width="348dp"
+            android:layout_height="232dp"
+            app:cardElevation="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.40"
+            android:visibility="gone">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/popUpInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+                <ImageView
+                    android:id="@+id/ivPopup"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@string/popup"
+                    android:src="@drawable/ic_info_outline_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informasi"
+                    app:layout_constraintStart_toEndOf="@id/ivPopup"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/info_subtitle"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/ivPopup"/>
+                <Button
+                    android:id="@+id/btnClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/close_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

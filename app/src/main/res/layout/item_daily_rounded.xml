@@ -13,14 +13,16 @@
         android:background="@android:color/transparent"
         app:color="@color/neutral_700"
         app:dimension="10sp"
-        app:data="0 gr"
+        app:data="0"
+        app:type="sugar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
+        android:id="@+id/day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Daily"
+        android:text="@string/day"
         app:layout_constraintTop_toBottomOf="@id/dailyRoundedView"
         app:layout_constraintEnd_toEndOf="@id/dailyRoundedView"
         app:layout_constraintStart_toStartOf="@id/dailyRoundedView"/>

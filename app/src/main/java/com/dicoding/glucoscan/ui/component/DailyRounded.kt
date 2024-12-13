@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Rect
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
@@ -18,7 +19,9 @@ class DailyRounded : View {
 
     private var _data: String? = null
     private var _color: Int = Color.RED
+    private var _customBackgroundColor: Int = Color.LTGRAY
     private var _dimension: Float = 0f
+    private var _type: String? = null
 
     private lateinit var textPaint: TextPaint
     private var textWidth: Float = 0f
@@ -32,6 +35,16 @@ class DailyRounded : View {
         get() = _data
         set(value) {
             _data = value
+            updateBackgroundColor()
+            updateTextColor()
+            invalidateTextPaintAndMeasurements()
+            invalidate()
+        }
+
+    var type: String?
+        get() = _type
+        set(value) {
+            _type = value
             invalidateTextPaintAndMeasurements()
         }
 
@@ -43,6 +56,15 @@ class DailyRounded : View {
         set(value) {
             _color = value
             invalidateTextPaintAndMeasurements()
+        }
+
+    var customBackgroundColor: Int
+        get() = _customBackgroundColor
+        set(value) {
+            _customBackgroundColor = value
+            updateBackgroundColor()
+            invalidateTextPaintAndMeasurements()
+            invalidate()
         }
 
     var dimension: Float
@@ -71,10 +93,15 @@ class DailyRounded : View {
                 attrs, R.styleable.DailyRounded, defStyle, 0)
 
         _data = a.getString(
-                R.styleable.DailyRounded_data)
+                R.styleable.DailyRounded_data) ?: "0"
+        _type = a.getString(
+                R.styleable.DailyRounded_type)
         _color = a.getColor(
                 R.styleable.DailyRounded_color,
                 color)
+        _customBackgroundColor = a.getColor(
+                R.styleable.DailyRounded_backgroundColor,
+                customBackgroundColor)
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
         _dimension = a.getDimension(
@@ -88,11 +115,31 @@ class DailyRounded : View {
             flags = Paint.ANTI_ALIAS_FLAG
             textAlign = Paint.Align.LEFT
         }
-
-        backgroundPaint.color = Color.LTGRAY
-
+        updateBackgroundColor()
         // Update TextPaint and text measurements from attributes
         invalidateTextPaintAndMeasurements()
+    }
+
+    private fun updateBackgroundColor() {
+        if (customBackgroundColor == Color.LTGRAY) {
+            backgroundPaint.color = when (_data?.toIntOrNull()) {
+                in 1..50 -> context.getColor(R.color.green_300)
+                in 51..100 -> context.getColor(R.color.yellow_300)
+                in 101..Int.MAX_VALUE -> context.getColor(R.color.red_300)
+                else -> Color.LTGRAY
+            }
+        } else {
+            backgroundPaint.color = customBackgroundColor
+        }
+    }
+
+    private fun updateTextColor(){
+        color = when (_data?.toIntOrNull()) {
+            in 1..50 -> context.getColor(R.color.green_900)
+            in 51..100 -> context.getColor(R.color.yellow_900)
+            in 101..Int.MAX_VALUE -> context.getColor(R.color.red_900)
+            else -> context.getColor(R.color.neutral_900)
+        }
     }
 
     private fun invalidateTextPaintAndMeasurements() {
@@ -100,7 +147,7 @@ class DailyRounded : View {
             it.textSize = dimension
             it.color = color
             textWidth = it.measureText(data)
-            textHeight = it.fontMetrics.bottom
+            textHeight = it.fontMetrics.descent - it.fontMetrics.ascent
         }
     }
 
@@ -127,10 +174,21 @@ class DailyRounded : View {
 
         // Draw the text inside the circle, centered
         data?.let {
+            val text = when(type){
+                "sugar" -> "$it gr"
+                else -> it
+            }
+
+            val textBound = Rect()
+            textPaint.getTextBounds(text, 0, text.length, textBound)
+
+            val textX = centerX - textBound.width() / 2f
+            val textY = centerY + textBound.height() / 2f - textBound.bottom
+
             canvas.drawText(
-                it,
-                centerX - textWidth / 2f,  // Center horizontally
-                centerY + textHeight / 2f, // Center vertically (adjust for baseline)
+                text,
+                textX,
+                textY,
                 textPaint
             )
         }
