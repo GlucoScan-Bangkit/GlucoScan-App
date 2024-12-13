@@ -1,6 +1,8 @@
 package com.dicoding.glucoscan.ui.screen.home
 
 import android.app.Application
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +11,7 @@ import com.dicoding.glucoscan.data.EncryptedSharedPreference.getToken
 import com.dicoding.glucoscan.data.Result
 import com.dicoding.glucoscan.data.repository.UserRepository
 import com.dicoding.glucoscan.data.response.DashboardResponse
+import com.dicoding.glucoscan.helper.get7DateBehind
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val mApplication: Application, private val repository: UserRepository) : ViewModel() {
@@ -26,7 +29,19 @@ class HomeViewModel(private val mApplication: Application, private val repositor
         }
     }
 
-    fun getDailyRoundedData() : List<String> {
-        return listOf("0", "10", "20", "30" , "100", "200", "300", "10", "20", "30")
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getDailyRoundedData() : List<List<String>> {
+        val list = get7DateBehind()
+        val data = listOf("0", "10", "20", "30" , "100", "200", "300", "10", "20", "30")
+        var fullList = mutableListOf<List<String>>()
+
+        for (i in list.indices){
+            val dataStartIndex = i * 2
+            if (dataStartIndex < data.size) {
+                val dailyData = listOf(list[i]) + data.subList(dataStartIndex, minOf(dataStartIndex + 2, data.size))
+                fullList.add(dailyData)
+            }
+        }
+        return fullList
     }
 }

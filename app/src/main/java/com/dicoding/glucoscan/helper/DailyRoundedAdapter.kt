@@ -4,15 +4,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.ui.component.DailyRounded
 
-class DailyRoundedAdapter(private val items: List<String>) :
+class DailyRoundedAdapter(private val items: List<List<String>>) :
     RecyclerView.Adapter<DailyRoundedAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dailyRounded: DailyRounded = view.findViewById(R.id.dailyRoundedView)
+        val day: TextView = view.findViewById(R.id.day)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,7 +24,9 @@ class DailyRoundedAdapter(private val items: List<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.dailyRounded.data = items[position]
+        holder.dailyRounded
+        holder.dailyRounded.data = items[position].first()
+        holder.day.text = items[position].last()
         holder.dailyRounded.dimension = 28f
     }
 
