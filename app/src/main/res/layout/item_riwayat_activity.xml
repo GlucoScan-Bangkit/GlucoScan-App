@@ -31,6 +31,8 @@
                     android:id="@+id/ivImage"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/default_profile"
                     tools:src="@tools:sample/avatars"/>
             </com.google.android.material.card.MaterialCardView>
 

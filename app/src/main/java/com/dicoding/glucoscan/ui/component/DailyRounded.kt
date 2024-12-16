@@ -46,6 +46,7 @@ class DailyRounded : View {
         set(value) {
             _type = value
             invalidateTextPaintAndMeasurements()
+            invalidate()
         }
 
     /**
@@ -56,6 +57,7 @@ class DailyRounded : View {
         set(value) {
             _color = value
             invalidateTextPaintAndMeasurements()
+            invalidate()
         }
 
     var customBackgroundColor: Int
@@ -72,6 +74,7 @@ class DailyRounded : View {
         set(value) {
             _dimension = value
             invalidateTextPaintAndMeasurements()
+            invalidate()
         }
 
 

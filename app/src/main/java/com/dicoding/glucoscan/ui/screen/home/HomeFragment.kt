@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
         arguments?.getParcelable<UserData>("user").let{
             Glide.with(requireContext())
                 .load(it?.profilePicture)
+                .placeholder(R.drawable.default_profile)
                 .into(binding.ivProfile)
             binding.tvUsername.text = "Halo, ${it?.name}"
         }

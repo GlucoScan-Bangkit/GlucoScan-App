@@ -38,6 +38,9 @@ class ProfileEditorActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(user?.profilePicture)
+            .placeholder(R.drawable.default_profile)
+            .error(R.drawable.default_profile)
+            .circleCrop()
             .into(binding.ivProfile)
 
         binding.usernameInput.title.text = getString(R.string.fullname)
@@ -49,13 +52,13 @@ class ProfileEditorActivity : AppCompatActivity() {
         binding.ageInput.title.text = getString(R.string.age)
         binding.ageInput.input.setText(user?.age.toString())
 
-        if(user?.gender?.toBooleanStrictOrNull() == true){
+        if(user?.gender?.toBoolean() == false){
             binding.radioButtonMale.background.setTint(resources.getColor(R.color.blue_500))
             binding.radioButtonMale.setTextColor(resources.getColor(R.color.white))
             binding.radioButtonFemale.background.setTint(resources.getColor(R.color.white))
             binding.radioButtonFemale.setTextColor(resources.getColor(R.color.blue_500))
             binding.radioButtonMale.isChecked = true
-        } else if (user?.gender?.toBooleanStrictOrNull() == false) {
+        } else if (user?.gender?.toBoolean() == true) {
             binding.radioButtonFemale.background.setTint(resources.getColor(R.color.blue_500))
             binding.radioButtonFemale.setTextColor(resources.getColor(R.color.white))
             binding.radioButtonMale.background.setTint(resources.getColor(R.color.white))

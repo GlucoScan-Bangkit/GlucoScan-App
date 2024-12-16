@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.glucoscan.R
 import com.dicoding.glucoscan.data.response.DataItem
 import com.dicoding.glucoscan.databinding.ItemRiwayatActivityBinding
 
@@ -17,6 +18,7 @@ class HistoryAdapter(private val items: List<DataItem?>?) :
         fun bind(item: DataItem?) {
             Glide.with(binding.root.context)
                 .load(item)
+                .placeholder(R.drawable.default_profile)
                 .into(binding.ivImage)
             val time = changeFormatTimestamp(item?.timestamp!!, "HH:mm")
             var sugarDouble: Double = 0.0

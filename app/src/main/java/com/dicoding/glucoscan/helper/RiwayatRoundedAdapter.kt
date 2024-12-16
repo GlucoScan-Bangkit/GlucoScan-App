@@ -22,6 +22,7 @@ class RiwayatRoundedAdapter(
             val data = changeFormatTimestamp(item, "dd", "yearMonthDate")
             binding.dailyRoundedView.data = data
             binding.dailyRoundedView.dimension = 28f
+            binding.dailyRoundedView.type = "date"
             if (isSelected) {
                 binding.dailyRoundedView.color = binding.root.context.getColor(R.color.white)
                 binding.dailyRoundedView.customBackgroundColor = binding.root.context.getColor(R.color.blue_500)

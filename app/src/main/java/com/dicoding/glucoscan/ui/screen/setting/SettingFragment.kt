@@ -43,6 +43,7 @@ class SettingFragment : Fragment() {
         arguments?.getParcelable<UserData>("user")?.let {
             Glide.with(this)
                 .load(it.profilePicture)
+                .placeholder(R.drawable.default_profile)
                 .into(binding.ivProfile)
             binding.tvUsername.text = it.name
             binding.tvEmail.text = it.email
